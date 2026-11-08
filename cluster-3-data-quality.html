@@ -52,26 +52,26 @@ a:hover{text-decoration:underline}
 <div class="hero">
   <div class="cluster-tag">Cluster 3</div>
   <h1>Data Types and Quality</h1>
-  <p class="hero-summary">How to identify what sensors actually measure, distinguish resolution from accuracy, interpret vessel telemetry, and apply quality flags and provenance records to marine data used in Seychelles decision-making.</p>
+  <p class="hero-summary">How to identify what sensors actually measure, distinguish <a href="glossary.html#term-resolution">resolution</a> from accuracy, interpret vessel telemetry, and apply quality flags and provenance records to marine data used in Seychelles decision-making.</p>
   <p class="meta">Last reviewed November 2026</p>
 </div>
 
 <main class="content">
 
   <h2>Identify what the sensor observes</h2>
-  <p>Remote sensing measures a signal from which analysts infer properties. Satellite ocean colour requires atmospheric correction and can be affected by clouds, sun glint, suspended matter and shallow seabed reflectance. A chlorophyll estimate near Mahé may not have the same performance as an offshore estimate. Record the product algorithm, processing level and quality masks.</p>
-  <p>Satellite-derived bathymetry needs calibration and validation within appropriate water clarity, substrate and depth conditions. A plausible-looking depth map does not establish survey quality. Separate training observations from independent validation and report where the model should not be applied.</p>
+  <p><a href="glossary.html#term-remote-sensing">Remote sensing</a> measures a signal from which analysts infer properties. Satellite <a href="glossary.html#term-ocean-colour">ocean colour</a> requires atmospheric correction and can be affected by clouds, sun glint, suspended matter and shallow seabed reflectance. A chlorophyll estimate near Mahé may not have the same performance as an offshore estimate. Record the product algorithm, processing level and quality masks.</p>
+  <p><a href="glossary.html#term-satellite-derived-bathymetry">Satellite-derived bathymetry</a> needs calibration and validation within appropriate water clarity, substrate and depth conditions. A plausible-looking depth map does not establish survey quality. Separate training observations from independent validation and report where the model should not be applied.</p>
 
   <h2>Separate resolution from accuracy</h2>
-  <p>Resolution includes spatial, temporal and spectral detail. Pixel size does not establish positional accuracy or the smallest reliably identifiable feature. Resampling a coarse grid to smaller cells increases the number of cells, not the information content.</p>
+  <p>Resolution includes spatial, temporal and spectral detail. Pixel size does not establish <a href="glossary.html#term-positional-accuracy">positional accuracy</a> or the smallest reliably identifiable feature. Resampling a coarse grid to smaller cells increases the number of cells, not the information content.</p>
   <p>When comparing Western Indian Ocean products, preserve the original support scale and observation interval. Do not combine a monthly regional mean and a short coastal field visit as if they sampled the same event. Document how clouds, missing data and seasonal sampling affect the comparison.</p>
 
   <h2>Interpret vessel telemetry carefully</h2>
-  <p>AIS records broadcasts from participating vessels subject to reception and reporting conditions. Some vessels do not transmit, some transmissions are not received and some locations may be erroneous. Apparent fishing classifications add model assumptions to an incomplete observation record.</p>
+  <p><a href="glossary.html#term-ais">AIS</a> records broadcasts from participating vessels subject to reception and reporting conditions. Some vessels do not transmit, some transmissions are not received and some locations may be erroneous. Apparent fishing classifications add model assumptions to an incomplete observation record.</p>
   <p>Around Seychelles, distinguish observed track density from total marine use. Do not infer the absence of artisanal fishing from an empty AIS layer. Protect identifiable tracks and commercially sensitive information through appropriate aggregation and controlled access. State the observation period and the platform coverage before interpreting a change.</p>
 
   <h2>Use flags and provenance</h2>
-  <p>A quality flag encodes checks or suitability specific to a dataset and variable. Read the provider's flag definitions. The same number can mean different things across products. Apply filters explicitly, count excluded observations and retain the selection rules.</p>
+  <p>A <a href="glossary.html#term-quality-flag">quality flag</a> encodes checks or suitability specific to a dataset and variable. Read the provider's flag definitions. The same number can mean different things across products. Apply filters explicitly, count excluded observations and retain the selection rules.</p>
   <p>A minimum quality note includes source version, acquisition period, spatial support, reference systems, processing steps, uncertainty, validation and missing-data treatment. Check whether a product changed algorithm between years before interpreting differences as environmental change.</p>
 
   <div class="practice">

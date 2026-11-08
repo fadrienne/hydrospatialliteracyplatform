@@ -59,7 +59,7 @@ a:hover{text-decoration:underline}
 
 <div class="hero">
   <div class="cluster-tag">Cluster 1</div>
-  <h1>Hydrospatial Foundations</h1>
+  <h1><a href="glossary.html#term-hydrospatial">Hydrospatial</a> Foundations</h1>
   <p class="hero-summary">How to define a spatial question, handle coordinate reference systems and datums, and apply a reproducible workflow before choosing or combining marine data products.</p>
   <p class="meta">Last reviewed November 2026</p>
 </div>
@@ -71,18 +71,18 @@ a:hover{text-decoration:underline}
   <p>Hydrospatial work joins observations to the institutions that maintain and use them. Treat local knowledge and national survey holdings as evidence alongside global products. Record where imported products leave gaps rather than interpreting gaps as absent habitats or activity.</p>
 
   <h2>Separate position from height</h2>
-  <p>A coordinate reference system describes how coordinates relate to Earth. Record the datum, coordinate order, units and projection. Geographic coordinates usually require longitude and latitude; a projected layer uses linear units. Confirm the actual CRS from metadata before transforming a layer. Assigning a CRS label does not transform coordinates.</p>
-  <p>GNSS commonly reports ellipsoidal height. An orthometric height uses a gravity-related reference, often a geoid model. The familiar relationship between ellipsoidal height, orthometric height and geoid undulation depends on compatible conventions. Do not use a global geoid correction as a substitute for a documented local vertical transformation.</p>
+  <p>A <a href="glossary.html#term-coordinate-reference-system">coordinate reference system</a> describes how coordinates relate to Earth. Record the <a href="glossary.html#term-datum">datum</a>, coordinate order, units and projection. Geographic coordinates usually require longitude and latitude; a projected layer uses linear units. Confirm the actual CRS from <a href="glossary.html#term-metadata">metadata</a> before transforming a layer. Assigning a CRS label does not transform coordinates.</p>
+  <p><a href="glossary.html#term-gnss">GNSS</a> commonly reports ellipsoidal height. An <a href="glossary.html#term-orthometric-height">orthometric height</a> uses a gravity-related reference, often a <a href="glossary.html#term-geoid">geoid</a> model. The familiar relationship between ellipsoidal height, orthometric height and geoid undulation depends on compatible conventions. Do not use a global geoid correction as a substitute for a documented local vertical transformation.</p>
 
   <h2>Keep depth references explicit</h2>
-  <p>A chart datum provides a reference for charted depths. Mean sea level, a tidal datum and the satellite reference ellipsoid are not interchangeable. A bathymetric grid may combine sources with different vertical references or incompletely known origins. Check product documentation and retain unresolved differences in the uncertainty statement.</p>
+  <p>A <a href="glossary.html#term-chart-datum">chart datum</a> provides a reference for charted depths. <a href="glossary.html#term-mean-sea-level">Mean sea level</a>, a <a href="glossary.html#term-tidal-datum">tidal datum</a> and the satellite reference <a href="glossary.html#term-ellipsoid">ellipsoid</a> are not interchangeable. A bathymetric grid may combine sources with different vertical references or incompletely known origins. Check product documentation and retain unresolved differences in the uncertainty statement.</p>
   <p>For a Mahé coastal assessment, list each elevation source, reference surface, tidal observation period and transformation. State whether depths increase downward and elevations increase upward. Never subtract two rasters solely because they appear aligned on screen.</p>
 
   <h2>Apply a reproducible workflow</h2>
   <ol>
     <li>State the intended use and decision scale.</li>
     <li>Record source version, horizontal CRS and vertical reference.</li>
-    <li>Check units, axis order, land masks and nodata conventions.</li>
+    <li>Check units, axis order, land masks and <a href="glossary.html#term-nodata">nodata</a> conventions.</li>
     <li>Transform using a documented operation and retain the originals.</li>
     <li>Inspect known positions and quantify remaining misalignment.</li>
     <li>Report what the evidence can support and what requires a local survey.</li>
