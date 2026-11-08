@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>From Data to Decisions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--deep:#071525;--navy:#0a1e3a;--ocean:#1e82c0;--white:#fff;--c5-bg:#daeef8;--c5:#1565a8;--text:#1a2a3a;--muted:#4a5a6a;--rule:#c4d8e8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;font-weight:400;color:var(--text);background:var(--white);line-height:1.65}
+a{color:var(--ocean);text-decoration:none}
+a:hover{text-decoration:underline}
+.nav{background:var(--deep);padding:0.9rem 2rem;display:flex;align-items:center;gap:1.5rem}
+.nav-home{color:rgba(255,255,255,0.55);font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;letter-spacing:0.03em;text-transform:uppercase;display:flex;align-items:center;gap:0.4rem;transition:color 0.15s}
+.nav-home:hover{color:#fff;text-decoration:none}
+.nav-home svg{width:14px;height:14px;flex-shrink:0}
+.nav-title{color:#fff;font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:800;letter-spacing:0.01em}
+.hero{background:var(--c5-bg);padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.hero::after{content:'05';position:absolute;right:1.5rem;bottom:-0.5rem;font-family:'Syne',sans-serif;font-weight:800;font-size:8rem;color:rgba(21,101,168,0.08);line-height:1;pointer-events:none}
+.cluster-tag{display:inline-block;background:rgba(21,101,168,0.12);color:var(--c5);font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;padding:0.25rem 0.65rem;border-radius:3px;margin-bottom:1rem}
+.hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.6rem,4vw,2.4rem);color:var(--navy);line-height:1.15;max-width:640px}
+.hero-summary{margin-top:0.9rem;color:var(--muted);font-size:1rem;max-width:580px;line-height:1.6}
+.meta{margin-top:1.4rem;color:#8899aa;font-size:0.78rem;letter-spacing:0.03em}
+.content{max-width:720px;margin:0 auto;padding:3rem 2rem 4rem}
+.content h2{font-family:'Syne',sans-serif;font-weight:700;font-size:1.25rem;color:var(--navy);margin:2.5rem 0 0.8rem;padding-bottom:0.5rem;border-bottom:2px solid var(--c5)}
+.content h2:first-child{margin-top:0}
+.content p{margin-bottom:1.1rem;color:var(--text)}
+.practice{background:var(--c5-bg);border-left:4px solid var(--c5);border-radius:0 6px 6px 0;padding:1.25rem 1.5rem;margin:2rem 0}
+.practice-label{font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--c5);margin-bottom:0.5rem}
+.practice p{margin:0;color:var(--text)}
+.references{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--rule)}
+.references h2{font-size:0.85rem;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);margin-bottom:0.75rem;padding:0;border:none}
+.references ul{list-style:none;padding:0}
+.references ul li{margin-bottom:0.4rem}
+.references ul li a{color:var(--ocean);font-size:0.9rem}
+.footer{background:var(--deep);color:rgba(255,255,255,0.4);text-align:center;font-size:0.78rem;padding:1.4rem 2rem}
+@media(max-width:600px){.hero{padding:2rem 1.25rem 2rem}.content{padding:2rem 1.25rem 3rem}}
+</style>
+<script>if(history.scrollRestoration)history.scrollRestoration="manual";window.addEventListener("load",function(){window.scrollTo(0,0);});</script>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-home" href="./">
+    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8,1 2,7 8,13"/><line x1="2" y1="7" x2="13" y2="7"/></svg>
+    Home
+  </a>
+  <span class="nav-title">Hydrospatial Literacy Platform</span>
+</nav>
+
+<div class="hero">
+  <div class="cluster-tag">Cluster 5</div>
+  <h1>From Data to Decisions</h1>
+  <p class="hero-summary">How to connect spatial evidence to Seychelles governance decisions by building evidence chains, defining monitoring indicators, and making trade-offs and uncertainty explicit in marine spatial planning.</p>
+  <p class="meta">Last reviewed November 2026</p>
+</div>
+
+<main class="content">
+
+  <h2>Begin with the decision and authority</h2>
+  <p>Marine spatial planning connects spatial evidence with ecological, economic and social objectives through a public process. For Seychelles, identify the current official plan, relevant gazetted instruments, management plans and responsible institutions before interpreting a zoning map. The Seychelles MSP initiative website is a starting point for finding those sources, not a replacement for the operative legal text.</p>
+  <p>The official initiative website reports approval of the Seychelles Marine Spatial Plan in March 2025. Institutional arrangements and implementing instruments can change. Check current authoritative documents for the date and location relevant to a decision rather than treating a learning note as legal advice.</p>
+
+  <h2>Build an evidence chain</h2>
+  <p>Link a decision question to a source layer, a method, an uncertainty statement and an accountable decision-maker. Separate observations from modelled quantities and from policy choices. A global marine protected area dataset supports regional context but does not determine a Seychelles legal boundary or allowable activity.</p>
+  <p>For a proposed activity near a protected area, verify official geometry, coordinate references, zoning rules and the applicable management instrument. Document boundary uncertainty and unresolved overlaps. Obtain clarification from the responsible authority when evidence conflicts.</p>
+
+  <h2>Define monitoring indicators</h2>
+  <p>Choose indicators that match the management objective. Specify a baseline, numerator, denominator, observation period, sampling method, update frequency and institutional owner. A habitat map can estimate mapped extent, not ecological condition without suitable observations. Thermal stress can indicate bleaching risk, not prove coral mortality.</p>
+  <p>For an Aldabra reef-monitoring example, combine a documented temperature product with repeated ecological observations and a consistent survey method. Record cloud gaps, sampling effort and changes in classification. Do not present a more frequent satellite update as a more frequent ecological survey.</p>
+
+  <h2>Make trade-offs and uncertainty visible</h2>
+  <p>A blue economy briefing should distinguish who gains, who bears costs and which values remain outside the available data. Include artisanal fishing, tourism, biodiversity and cultural uses where relevant. Consult affected groups and record how their evidence influenced the recommendation.</p>
+  <p>Spatial uncertainty can change the strength of an inference or the location of an apparent conflict. Present alternative interpretations when evidence does not resolve a choice. Define what new observation would reduce uncertainty enough to change the decision.</p>
+
+  <div class="practice">
+    <div class="practice-label">Practice</div>
+    <p>Prepare a Seychelles decision brief with five fields: action, authority, evidence, uncertainty and review date. Attach source metadata and a reproducible processing note.</p>
+  </div>
+
+  <div class="references">
+    <h2>References</h2>
+    <ul>
+      <li><a href="https://seymsp.com/" target="_blank" rel="noopener">Seychelles Marine Spatial Plan Initiative</a></li>
+    </ul>
+  </div>
+
+</main>
+
+<footer class="footer">
+  &copy; 2026&ndash;27 SHORE Institute &middot; Victoria, Seychelles &middot; Funded by SeyCCAT / ETF
+</footer>
+</body>
+</html>

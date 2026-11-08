@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hydrospatial Card Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--deep:#071525;--navy:#0a1e3a;--ocean:#1e82c0;--amber:#e8921e;--white:#fff;--text:#1a2a3a;--muted:#4a5a6a;--rule:#d4dde6;--bg:#f7f9fb}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;font-weight:400;color:var(--text);background:var(--white);line-height:1.6}
+.nav{background:var(--deep);padding:0.9rem 2rem;display:flex;align-items:center;gap:1.5rem}
+.nav-home{color:rgba(255,255,255,0.55);font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;letter-spacing:0.03em;text-transform:uppercase;display:flex;align-items:center;gap:0.4rem;transition:color 0.15s;text-decoration:none}
+.nav-home:hover{color:#fff}
+.nav-home svg{width:14px;height:14px;flex-shrink:0}
+.nav-title{color:#fff;font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:800;letter-spacing:0.01em}
+.hero{background:var(--navy);padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.hero::after{content:'◈';position:absolute;right:1.5rem;bottom:-0.5rem;font-size:7rem;color:rgba(255,255,255,0.05);line-height:1;pointer-events:none;font-family:'Syne',sans-serif}
+.hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.5rem,3.5vw,2.2rem);color:#fff;line-height:1.2}
+.hero p{margin-top:0.6rem;color:rgba(255,255,255,0.6);font-size:0.95rem;max-width:540px}
+.main{max-width:760px;margin:0 auto;padding:3rem 2rem 5rem}
+.badge{display:inline-block;background:var(--amber);color:#fff;font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;padding:0.25rem 0.65rem;border-radius:3px;margin-bottom:1.5rem}
+.main h2{font-family:'Syne',sans-serif;font-weight:800;font-size:1.35rem;color:var(--navy);margin-bottom:0.75rem}
+.main p{font-size:0.95rem;color:var(--text);margin-bottom:1rem;max-width:600px}
+.timeline{margin:2.5rem 0;border-left:3px solid var(--rule);padding-left:1.75rem}
+.timeline-item{position:relative;margin-bottom:2rem}
+.timeline-item::before{content:'';position:absolute;left:-2.1rem;top:0.3rem;width:11px;height:11px;border-radius:50%;background:var(--rule);border:2.5px solid var(--ocean)}
+.timeline-item h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--navy);margin-bottom:0.3rem}
+.timeline-item p{color:var(--muted);font-size:0.9rem;margin:0}
+.scope-box{background:var(--bg);border:1px solid var(--rule);border-radius:8px;padding:1.5rem;margin:2rem 0}
+.scope-box h3{font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;color:var(--navy);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.04em;font-size:0.78rem}
+.scope-list{list-style:none;padding:0}
+.scope-list li{font-size:0.88rem;color:var(--muted);padding:0.3rem 0;border-bottom:1px solid var(--rule);display:flex;gap:0.5rem;align-items:baseline}
+.scope-list li:last-child{border-bottom:none}
+.tick{color:var(--ocean);font-weight:700;font-size:0.85rem;flex-shrink:0}
+.notify{background:rgba(30,130,192,0.07);border:1px solid rgba(30,130,192,0.2);border-radius:8px;padding:1.25rem 1.5rem;margin-top:2rem}
+.notify p{font-size:0.88rem;color:var(--navy);margin:0}
+.footer{background:var(--deep);color:rgba(255,255,255,0.4);text-align:center;font-size:0.78rem;padding:1.4rem 2rem}
+</style>
+<script>if(history.scrollRestoration)history.scrollRestoration="manual";window.addEventListener("load",function(){window.scrollTo(0,0);});</script>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-home" href="./">
+    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8,1 2,7 8,13"/><line x1="2" y1="7" x2="13" y2="7"/></svg>
+    Home
+  </a>
+  <span class="nav-title">Hydrospatial Literacy Platform</span>
+</nav>
+
+<div class="hero">
+  <h1>Hydrospatial Card Deck</h1>
+  <p>A physical and digital reference deck for practitioners working with marine spatial data in Seychelles and the Western Indian Ocean.</p>
+</div>
+
+<div class="main">
+  <span class="badge">Coming in Phase 2</span>
+  <h2>Under development</h2>
+  <p>The card deck is in design. It will be available as both a printed deck and a digital set, structured around the five knowledge clusters of this platform.</p>
+  <p>Each card covers one concept: a term, a dataset, a decision method, or a worked Western Indian Ocean example. The deck is designed for use in fieldwork, planning meetings, and training sessions without internet access.</p>
+
+  <div class="scope-box">
+    <h3>Planned card sets</h3>
+    <ul class="scope-list">
+      <li><span class="tick">&#9679;</span> Cluster 1: Hydrospatial Foundations (coordinate systems, datums, reference surfaces)</li>
+      <li><span class="tick">&#9679;</span> Cluster 2: The Seabed and Water Column (survey methods, bathymetric products)</li>
+      <li><span class="tick">&#9679;</span> Cluster 3: Data Types and Quality (sensors, flags, fitness for purpose)</li>
+      <li><span class="tick">&#9679;</span> Cluster 4: Marine Spatial Data Infrastructure (metadata, interoperability, stewardship)</li>
+      <li><span class="tick">&#9679;</span> Cluster 5: From Data to Decisions (evidence chains, monitoring, MSP)</li>
+      <li><span class="tick">&#9679;</span> Glossary reference cards (key terms with Seychelles use notes)</li>
+    </ul>
+  </div>
+
+  <div class="notify">
+    <p>Register on the platform to be notified when the card deck is available. Registered users receive access to the digital version on release.</p>
+  </div>
+</div>
+
+<footer class="footer">
+  &copy; 2026&ndash;27 SHORE Institute &middot; Victoria, Seychelles &middot; Funded by SeyCCAT / ETF
+</footer>
+</body>
+</html>

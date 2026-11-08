@@ -1,0 +1,686 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hydrospatial Literacy Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --deep:    #071525;
+    --navy:    #0a1e3a;
+    --ocean:   #1e82c0;
+    --sky:     #87ceeb;
+    --amber:   #e8921e;
+    --sand:    #c8a870;
+    --mist:    #e8f4fb;
+    --white:   #ffffff;
+
+    --c1:  #0a2a52;
+    --c2:  #1a3a6e;
+    --c3:  #1a5a90;
+    --c4:  #1e6aaa;
+    --c5:  #e8921e;
+
+    --r-gloss: #1a3a6e;
+    --r-dir:   #1a5a90;
+    --r-deck:  #e8921e;
+    --r-res:   #0a2a52;
+    --r-about: #1e6aaa;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--mist);
+    color: var(--deep);
+  }
+
+  /* NAV */
+  nav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 2rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .logo-mark {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
+
+  .logo-icon { width: 42px; height: 42px; }
+
+  .logo-text {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--white);
+    letter-spacing: 0.03em;
+    line-height: 1.1;
+  }
+
+  .logo-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    display: block;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.5rem 0.9rem;
+    border-radius: 4px;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    text-decoration: none;
+    transition: background 0.18s;
+    white-space: nowrap;
+  }
+  .nav-btn:hover { background: rgba(255,255,255,0.2); }
+  .nav-btn.primary {
+    background: rgba(255,255,255,0.18);
+    border-color: rgba(255,255,255,0.4);
+    font-weight: 600;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 300px;
+    display: flex;
+    align-items: flex-end;
+    padding: 5rem 2rem 2.5rem;
+    overflow: hidden;
+    background: var(--deep);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        91deg, transparent, transparent 100px,
+        rgba(255,255,255,0.012) 100px, rgba(255,255,255,0.012) 101px
+      ),
+      repeating-linear-gradient(
+        179deg, transparent, transparent 70px,
+        rgba(255,255,255,0.012) 70px, rgba(255,255,255,0.012) 71px
+      ),
+      radial-gradient(ellipse 75% 55% at 68% 35%, #0a2a52 0%, #071525 70%),
+      linear-gradient(165deg, #1a3a6e 0%, #071525 100%);
+  }
+
+  .hero-rings {
+    position: absolute;
+    bottom: -80px;
+    right: -100px;
+    width: 520px;
+    height: 520px;
+    opacity: 0.09;
+    pointer-events: none;
+  }
+
+  .hero-rings circle {
+    fill: none;
+    stroke: #87ceeb;
+    animation: pulse 7s ease-in-out infinite;
+  }
+  .hero-rings circle:nth-child(2) { animation-delay: 1.5s; }
+  .hero-rings circle:nth-child(3) { animation-delay: 3s; }
+  .hero-rings circle:nth-child(4) { animation-delay: 4.5s; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50%       { opacity: 0.8; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 300;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 1rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 3px;
+    height: 18px;
+    background: #e8921e;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.9rem, 5.5vw, 3.4rem);
+    color: var(--white);
+    line-height: 1.1;
+    max-width: 100%;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: #87ceeb;
+  }
+
+  /* INTRO STRIP */
+  .intro {
+    background: var(--white);
+    padding: 1.75rem 2rem;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+  }
+
+  .intro p {
+    font-size: 0.93rem;
+    font-weight: 300;
+    line-height: 1.65;
+    color: #3a4a58;
+    max-width: 700px;
+  }
+
+  .intro p strong {
+    font-weight: 500;
+    color: var(--navy);
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    padding: 1.25rem 2rem 0.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #5a7a9a;
+    background: var(--white);
+  }
+
+  /* CLUSTER TILES */
+  .clusters {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  @media (max-width: 600px) {
+    .clusters { grid-template-columns: 1fr; }
+    .tile-full { grid-column: 1; }
+    .tile { padding: 1.1rem 1.25rem; gap: 0.75rem; }
+    .tile-num { font-size: 1.5rem; width: 2rem; min-width: 2rem; }
+    .tile-icon { width: 36px; height: 36px; }
+    .tile-label { font-size: 0.88rem; }
+    .tile-sub { font-size: 0.7rem; }
+  }
+
+  .tile {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    padding: 1.6rem 2rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: filter 0.16s, transform 0.16s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tile:hover {
+    filter: brightness(1.1);
+    transform: translateX(4px);
+  }
+
+  .tile:hover .tile-arrow { opacity: 1; transform: translateX(0); }
+
+  .c1 { background: var(--c1); }
+  .c2 { background: var(--c2); }
+  .c3 { background: var(--c3); }
+  .c4 { background: var(--c4); }
+  .c5 { background: var(--c5); }
+
+  .tile-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    color: rgba(255,255,255,0.18);
+    flex-shrink: 0;
+    line-height: 1;
+    width: 2.75rem;
+    min-width: 2.75rem;
+    text-align: right;
+  }
+
+  .tile-icon {
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    opacity: 0.88;
+  }
+
+  .tile-body { flex: 1; }
+
+  .tile-label {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--white);
+    line-height: 1.3;
+    display: block;
+  }
+
+  .tile-sub {
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+    margin-top: 0.25rem;
+    display: block;
+  }
+
+  .tile-arrow {
+    color: rgba(255,255,255,0.45);
+    font-size: 1.1rem;
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.16s, transform 0.16s;
+    flex-shrink: 0;
+  }
+
+  .tile-full { grid-column: 1 / -1; }
+
+  /* Cluster 5 light treatment */
+  .c5 { background: #daeef8; border-top: 1px solid rgba(0,0,0,0.04); }
+  .c5 .tile-num { color: rgba(10,30,58,0.1); }
+  .c5 .tile-label { color: var(--navy); }
+  .c5 .tile-sub { color: rgba(10,30,58,0.5); }
+  .c5 .tile-arrow { color: rgba(10,30,58,0.4); }
+  .c5 .tile-icon { filter: brightness(0) opacity(0.55); }
+
+  /* RESOURCES ROW */
+  .resources-label {
+    padding: 1.5rem 2rem 0.5rem;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #5a7a9a;
+    background: var(--white);
+  }
+
+  .resources {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    background: var(--white);
+    padding: 0 0 1.5rem;
+  }
+
+  @media (max-width: 700px) {
+    .resources { grid-template-columns: 1fr 1fr; }
+  }
+
+  .res-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.5rem 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.16s, transform 0.16s;
+    border-radius: 6px;
+    margin: 0 0.5rem;
+  }
+
+  .res-tile:hover {
+    background: rgba(0,0,0,0.05);
+    transform: translateY(-2px);
+  }
+
+  .res-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .res-icon svg { width: 24px; height: 24px; }
+
+  .ri-gloss { background: var(--r-gloss); }
+  .ri-dir   { background: var(--r-dir); }
+  .ri-deck  { background: var(--r-deck); }
+  .ri-res   { background: var(--r-res); }
+  .ri-about { background: var(--r-about); }
+
+  .res-label {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--deep);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .res-count {
+    font-size: 0.7rem;
+    font-weight: 300;
+    color: #5a7a9a;
+    text-align: center;
+  }
+
+  /* REGISTER CTA */
+  .register-cta {
+    background: var(--deep);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.75rem 2rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-text strong {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--white);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .cta-text span {
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #e8921e;
+    color: var(--white);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.65rem 1.25rem;
+    border-radius: 4px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.18s;
+    flex-shrink: 0;
+  }
+
+  .cta-btn:hover { background: #d4820a; }
+
+  /* FOOTER */
+  footer {
+    background: #071525;
+    color: rgba(255,255,255,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  footer a { color: rgba(255,255,255,0.45); text-decoration: none; }
+  footer a:hover { color: rgba(255,255,255,0.75); }
+</style>
+<script>if(history.scrollRestoration)history.scrollRestoration="manual";window.addEventListener("load",function(){window.scrollTo(0,0);});</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo-mark" href="#">
+    <svg class="logo-icon" viewBox="0 0 42 42" fill="none">
+      <circle cx="21" cy="21" r="20" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+      <path d="M5 27 Q10 21 15 24.5 Q20 28 25 22 Q30 16 37 20" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M5 31.5 Q10 26 15 29 Q20 32 25 27 Q30 22 37 25" stroke="rgba(135,206,235,0.75)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <path d="M13 17 Q17 13 21 15 Q25 17 29 13" stroke="rgba(255,255,255,0.4)" stroke-width="1" fill="none" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <span class="logo-text">Hydrospatial Literacy Platform</span>
+    </div>
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <svg class="hero-rings" viewBox="0 0 520 520">
+    <circle cx="260" cy="260" r="80"/>
+    <circle cx="260" cy="260" r="155"/>
+    <circle cx="260" cy="260" r="230"/>
+    <circle cx="260" cy="260" r="310"/>
+  </svg>
+  <div class="hero-content">
+    <h1>Ocean spatial knowledge for <em>decision-makers</em></h1>
+  </div>
+</section>
+
+<!-- INTRO -->
+<div class="intro">
+  <p>
+    The <strong>Hydrospatial Literacy Platform</strong> gives marine practitioners, planners, and policymakers the knowledge to understand, interpret, and act on ocean spatial data. Five knowledge clusters. A searchable glossary of 80+ terms. A directory of 35 hydrospatial datasets for the region. Free, open access.
+  </p>
+</div>
+
+<!-- CLUSTERS -->
+<div class="section-label" style="background:#fff;">Knowledge clusters</div>
+<div class="clusters">
+
+  <!-- Cluster 1 -->
+  <a class="tile c1" href="cluster-1-foundations.html">
+    <span class="tile-num">01</span>
+    <svg class="tile-icon" viewBox="0 0 46 46" fill="none">
+      <ellipse cx="23" cy="17" rx="16" ry="5" stroke="white" stroke-width="1.7" fill="none"/>
+      <path d="M7 25 Q12 29 23 29 Q34 29 39 25" stroke="white" stroke-width="1.7" fill="none"/>
+      <path d="M7 32 Q12 36 23 36 Q34 36 39 32" stroke="rgba(255,255,255,0.45)" stroke-width="1.3" fill="none"/>
+    </svg>
+    <div class="tile-body">
+      <span class="tile-label">Hydrospatial Foundations</span>
+      <span class="tile-sub">What hydrospatial science is and why it matters for SIDS</span>
+    </div>
+    <span class="tile-arrow">→</span>
+  </a>
+
+  <!-- Cluster 2 -->
+  <a class="tile c2" href="cluster-2-seabed.html">
+    <span class="tile-num">02</span>
+    <svg class="tile-icon" viewBox="0 0 46 46" fill="none">
+      <line x1="8" y1="14" x2="38" y2="14" stroke="white" stroke-width="1.5" stroke-dasharray="3 2" opacity="0.5"/>
+      <path d="M8 14 Q14 20 20 28 Q26 36 38 38" stroke="white" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+      <circle cx="23" cy="26" r="2.5" fill="rgba(255,255,255,0.6)"/>
+      <line x1="23" y1="10" x2="23" y2="40" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="2 2"/>
+    </svg>
+    <div class="tile-body">
+      <span class="tile-label">The Seabed and Water Column</span>
+      <span class="tile-sub">Bathymetry, seafloor habitats, water column properties</span>
+    </div>
+    <span class="tile-arrow">→</span>
+  </a>
+
+  <!-- Cluster 3 -->
+  <a class="tile c3" href="cluster-3-data-quality.html">
+    <span class="tile-num">03</span>
+    <svg class="tile-icon" viewBox="0 0 46 46" fill="none">
+      <rect x="9" y="9" width="28" height="28" rx="3" stroke="white" stroke-width="1.7" fill="none"/>
+      <line x1="9" y1="18" x2="37" y2="18" stroke="white" stroke-width="1.1" opacity="0.5"/>
+      <line x1="9" y1="27" x2="37" y2="27" stroke="white" stroke-width="1.1" opacity="0.5"/>
+      <line x1="18" y1="9" x2="18" y2="37" stroke="white" stroke-width="1.1" opacity="0.5"/>
+      <line x1="27" y1="9" x2="27" y2="37" stroke="white" stroke-width="1.1" opacity="0.5"/>
+      <circle cx="23" cy="23" r="4" fill="rgba(255,255,255,0.75)"/>
+    </svg>
+    <div class="tile-body">
+      <span class="tile-label">Data Types and Quality</span>
+      <span class="tile-sub">Raster, vector, resolution, uncertainty, fitness for use</span>
+    </div>
+    <span class="tile-arrow">→</span>
+  </a>
+
+  <!-- Cluster 4 -->
+  <a class="tile c4" href="cluster-4-msdi.html">
+    <span class="tile-num">04</span>
+    <svg class="tile-icon" viewBox="0 0 46 46" fill="none">
+      <circle cx="23" cy="12" r="4" stroke="white" stroke-width="1.7" fill="none"/>
+      <circle cx="11" cy="34" r="4" stroke="white" stroke-width="1.7" fill="none"/>
+      <circle cx="35" cy="34" r="4" stroke="white" stroke-width="1.7" fill="none"/>
+      <line x1="20" y1="15" x2="14" y2="30" stroke="white" stroke-width="1.3" opacity="0.7"/>
+      <line x1="26" y1="15" x2="32" y2="30" stroke="white" stroke-width="1.3" opacity="0.7"/>
+      <line x1="15" y1="34" x2="31" y2="34" stroke="white" stroke-width="1.3" opacity="0.7"/>
+    </svg>
+    <div class="tile-body">
+      <span class="tile-label">Marine Spatial Data Infrastructure</span>
+      <span class="tile-sub">Portals, standards, metadata, data sharing frameworks</span>
+    </div>
+    <span class="tile-arrow">→</span>
+  </a>
+
+  <!-- Cluster 5, full width -->
+  <a class="tile c5 tile-full" href="cluster-5-decisions.html">
+    <span class="tile-num">05</span>
+    <svg class="tile-icon" viewBox="0 0 46 46" fill="none">
+      <rect x="6" y="10" width="22" height="26" rx="2" stroke="white" stroke-width="1.7" fill="none"/>
+      <line x1="6" y1="19" x2="28" y2="19" stroke="white" stroke-width="1.1" opacity="0.5"/>
+      <line x1="6" y1="27" x2="28" y2="27" stroke="white" stroke-width="1.1" opacity="0.5"/>
+      <line x1="15" y1="10" x2="15" y2="36" stroke="white" stroke-width="1.1" opacity="0.5"/>
+      <path d="M31 20 L40 20 M36 15 L41 20 L36 25" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+    <div class="tile-body">
+      <span class="tile-label">From Data to Decisions</span>
+      <span class="tile-sub">How ocean data enters governance, marine spatial planning, EEZ management, blue economy policy</span>
+    </div>
+    <span class="tile-arrow">→</span>
+  </a>
+
+</div>
+
+<!-- RESOURCES -->
+<div class="resources-label">Reference tools</div>
+<div class="resources">
+
+  <a class="res-tile" href="glossary.html">
+    <div class="res-icon ri-gloss">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        <line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="13" y2="13"/>
+      </svg>
+    </div>
+    <span class="res-label">Glossary</span>
+    <span class="res-count">80+ terms</span>
+  </a>
+
+  <a class="res-tile" href="data-directory.html">
+    <div class="res-icon ri-dir">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <line x1="3" y1="9" x2="21" y2="9"/>
+        <line x1="3" y1="15" x2="21" y2="15"/>
+        <line x1="9" y1="3" x2="9" y2="21"/>
+      </svg>
+    </div>
+    <span class="res-label">Data Directory</span>
+    <span class="res-count">35 WIO datasets</span>
+  </a>
+
+  <a class="res-tile" href="resources.html">
+    <div class="res-icon ri-res">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="8" x2="12" y2="16"/>
+        <line x1="8" y1="12" x2="16" y2="12"/>
+      </svg>
+    </div>
+    <span class="res-label">Resources</span>
+    <span class="res-count">All tools</span>
+  </a>
+
+  <a class="res-tile" href="about.html">
+    <div class="res-icon ri-about">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="16" x2="12" y2="12"/>
+        <line x1="12" y1="8" x2="12.01" y2="8"/>
+      </svg>
+    </div>
+    <span class="res-label">About</span>
+    <span class="res-count">Platform info</span>
+  </a>
+
+</div>
+
+<!-- REGISTER CTA -->
+<div class="register-cta">
+  <div class="cta-text">
+    <span>Register to get updates when new clusters and resources are published.</span>
+  </div>
+  <a class="cta-btn" href="#">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+    </svg>
+    Register free
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>&#169; 2026-27 SHORE Institute &middot; Victoria, Seychelles &middot; Funded by SeyCCAT / ETF</span>
+  <span>
+    <a href="about.html">About</a> &nbsp;&middot;&nbsp;
+    <a href="#">Contact</a> &nbsp;&middot;&nbsp;
+    <a href="#">Privacy</a>
+  </span>
+</footer>
+
+</body>
+</html>
+
+</body></html>

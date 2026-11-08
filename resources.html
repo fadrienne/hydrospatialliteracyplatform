@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Resources</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--deep:#071525;--navy:#0a1e3a;--ocean:#1e82c0;--amber:#e8921e;--white:#fff;--c1:#0a2a52;--c2:#1a3a6e;--c3:#1a5a90;--c4:#1e6aaa;--c5:#1565a8;--text:#1a2a3a;--muted:#4a5a6a;--rule:#d4dde6;--bg:#f7f9fb}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;font-weight:400;color:var(--text);background:var(--white);line-height:1.6}
+a{color:var(--ocean);text-decoration:none}
+a:hover{text-decoration:underline}
+.nav{background:var(--deep);padding:0.9rem 2rem;display:flex;align-items:center;gap:1.5rem}
+.nav-home{color:rgba(255,255,255,0.55);font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;letter-spacing:0.03em;text-transform:uppercase;display:flex;align-items:center;gap:0.4rem;transition:color 0.15s;text-decoration:none}
+.nav-home:hover{color:#fff}
+.nav-home svg{width:14px;height:14px;flex-shrink:0}
+.nav-title{color:#fff;font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:800;letter-spacing:0.01em}
+.hero{background:var(--navy);padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.hero::after{content:'◎';position:absolute;right:1.5rem;bottom:-0.5rem;font-size:7rem;color:rgba(255,255,255,0.05);line-height:1;pointer-events:none;font-family:'Syne',sans-serif}
+.hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.5rem,3.5vw,2.2rem);color:#fff;line-height:1.2}
+.hero p{margin-top:0.6rem;color:rgba(255,255,255,0.6);font-size:0.95rem;max-width:580px}
+.main{max-width:900px;margin:0 auto;padding:2.5rem 2rem 5rem}
+.section-label{font-size:0.65rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem;margin-bottom:3rem}
+.card{border:1px solid var(--rule);border-radius:8px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:box-shadow 0.15s,transform 0.15s}
+.card:hover{box-shadow:0 4px 16px rgba(10,30,58,0.1);transform:translateY(-2px);text-decoration:none}
+.card-head{padding:1.25rem 1.25rem 1rem;border-left:4px solid var(--ocean)}
+.card-head.amber{border-left-color:var(--amber)}
+.card-head.c1{border-left-color:var(--c1)}
+.card-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--navy);line-height:1.25}
+.card-body{padding:0 1.25rem 1.25rem;flex:1;display:flex;flex-direction:column;gap:0.75rem}
+.card-desc{font-size:0.88rem;color:var(--muted);line-height:1.55;flex:1}
+.card-meta{display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;font-size:0.68rem;font-weight:500;padding:0.18rem 0.5rem;border-radius:3px;text-transform:uppercase;letter-spacing:0.04em}
+.badge-open{background:#e6f4ea;color:#2e7d32}
+.badge-phase2{background:#fff3cd;color:#7a5c00}
+.badge-wip{background:#e8f0fe;color:#3949ab}
+.badge-count{background:#eaf1f8;color:var(--muted)}
+.card-cta{display:inline-flex;align-items:center;gap:0.3rem;font-size:0.82rem;font-weight:500;color:var(--ocean)}
+.card.disabled{opacity:0.65;cursor:default}
+.card.disabled:hover{box-shadow:none;transform:none}
+.coming-box{background:var(--bg);border:1px dashed var(--rule);border-radius:8px;padding:1.5rem;text-align:center}
+.coming-box p{font-size:0.88rem;color:var(--muted);margin-bottom:0.75rem}
+.coming-box a{color:var(--ocean);font-size:0.88rem;font-weight:500}
+.divider{border:none;border-top:1px solid var(--rule);margin:2rem 0}
+.footer{background:var(--deep);color:rgba(255,255,255,0.4);text-align:center;font-size:0.78rem;padding:1.4rem 2rem}
+@media(max-width:600px){.main{padding:1.5rem 1rem 3rem}.grid{grid-template-columns:1fr}}
+</style>
+<script>if(history.scrollRestoration)history.scrollRestoration="manual";window.addEventListener("load",function(){window.scrollTo(0,0);});</script>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-home" href="./">
+    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8,1 2,7 8,13"/><line x1="2" y1="7" x2="13" y2="7"/></svg>
+    Home
+  </a>
+  <span class="nav-title">Hydrospatial Literacy Platform</span>
+</nav>
+
+<div class="hero">
+  <h1>Resources</h1>
+  <p>Reference tools for practitioners working with hydrospatial data in Seychelles and the Western Indian Ocean.</p>
+</div>
+
+<div class="main">
+
+  <p class="section-label">In development</p>
+  <div class="grid">
+
+    <a class="card" href="card-deck.html">
+      <div class="card-head amber">
+        <div class="card-title">Card Deck</div>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">A physical and digital reference deck structured around the five knowledge clusters. Designed for use in fieldwork, planning meetings and training sessions.</p>
+        <div class="card-meta">
+          <span class="badge badge-phase2">Phase 2</span>
+        </div>
+        <span class="card-cta">Read more →</span>
+      </div>
+    </a>
+
+    <a class="card" href="workbook.html">
+      <div class="card-head" style="border-left-color:var(--c3)">
+        <div class="card-title">Workbooks and Guides</div>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">Exercise workbooks, practitioner guides, policy notes and factsheets for Seychelles and WIO marine data practitioners.</p>
+        <div class="card-meta">
+          <span class="badge badge-wip">Work in progress</span>
+        </div>
+        <span class="card-cta">Read more →</span>
+      </div>
+    </a>
+
+  </div>
+
+  <hr class="divider">
+  <p class="section-label">Planned resources</p>
+
+  <div class="coming-box">
+    <p>Further reference tools will be added here as the platform grows. Have a suggestion? <a href="./">Register your interest</a> to stay informed.</p>
+  </div>
+
+</div>
+
+<footer class="footer">
+  &copy; 2026&ndash;27 SHORE Institute &middot; Victoria, Seychelles &middot; Funded by SeyCCAT / ETF
+</footer>
+</body>
+</html>

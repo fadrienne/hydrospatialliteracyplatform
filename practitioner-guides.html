@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practitioner Guides</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--deep:#071525;--navy:#0a1e3a;--ocean:#1e82c0;--amber:#e8921e;--white:#fff;--c1:#0a2a52;--c2:#1a3a6e;--c3:#1a5a90;--c4:#1e6aaa;--c5:#1565a8;--text:#1a2a3a;--muted:#4a5a6a;--rule:#d4dde6;--bg:#f7f9fb}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;font-weight:400;color:var(--text);background:var(--white);line-height:1.6}
+a{color:var(--ocean);text-decoration:none}
+a:hover{text-decoration:underline}
+.nav{background:var(--deep);padding:0.9rem 2rem;display:flex;align-items:center;gap:1.5rem}
+.nav-home{color:rgba(255,255,255,0.55);font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;letter-spacing:0.03em;text-transform:uppercase;display:flex;align-items:center;gap:0.4rem;transition:color 0.15s;text-decoration:none}
+.nav-home:hover{color:#fff}
+.nav-home svg{width:14px;height:14px;flex-shrink:0}
+.nav-sep{color:rgba(255,255,255,0.2);font-size:0.8rem}
+.nav-title{color:#fff;font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:800;letter-spacing:0.01em}
+.nav-parent{color:rgba(255,255,255,0.5);font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:400;text-decoration:none}
+.nav-parent:hover{color:rgba(255,255,255,0.8)}
+.hero{background:var(--navy);padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.hero::after{content:'◎';position:absolute;right:1.5rem;bottom:-0.5rem;font-size:7rem;color:rgba(255,255,255,0.05);line-height:1;pointer-events:none;font-family:'Syne',sans-serif}
+.wip-badge{display:inline-flex;align-items:center;gap:0.4rem;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.75);font-size:0.68rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;padding:0.25rem 0.65rem;border-radius:3px;margin-bottom:0.9rem}
+.wip-badge::before{content:'';display:inline-block;width:6px;height:6px;background:#e8921e;border-radius:50%}
+.hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.5rem,3.5vw,2.2rem);color:#fff;line-height:1.2}
+.hero p{margin-top:0.6rem;color:rgba(255,255,255,0.6);font-size:0.95rem;max-width:600px;line-height:1.6}
+.wip-notice{background:#fffbf0;border-left:3px solid var(--amber);padding:1rem 1.5rem;margin:0;font-size:0.88rem;color:#5a4a1a;line-height:1.55}
+.wip-notice strong{color:#3a2a0a}
+.main{max-width:900px;margin:0 auto;padding:2.5rem 2rem 5rem}
+.persona-guides{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.pg-card{border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+.pg-head{padding:1.25rem 1.5rem 1rem;background:var(--bg);border-bottom:1px solid var(--rule)}
+.pg-title{font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem;color:var(--navy);line-height:1.3}
+.pg-body{padding:1.25rem 1.5rem;display:flex;flex-direction:column;gap:1rem}
+.pg-section{display:flex;flex-direction:column;gap:0.4rem}
+.pg-label{font-size:0.65rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted)}
+.pg-text{font-size:0.88rem;color:var(--text);line-height:1.6}
+.pg-meta{display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center}
+.pg-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
+.pg-cluster{display:inline-flex;align-items:center;font-size:0.68rem;font-weight:500;padding:0.18rem 0.5rem;border-radius:3px;text-transform:uppercase;letter-spacing:0.04em;color:#fff}
+.c1{background:var(--c1)}.c2{background:var(--c2)}.c3{background:var(--c3)}.c4{background:var(--c4)}.c5{background:var(--c5)}
+.pg-ex{font-size:0.75rem;color:var(--muted);background:var(--bg);border:1px solid var(--rule);border-radius:3px;padding:0.18rem 0.5rem}
+.footer{background:var(--deep);color:rgba(255,255,255,0.4);text-align:center;font-size:0.78rem;padding:1.4rem 2rem}
+@media(max-width:680px){.main{padding:1.5rem 1rem 3rem}.persona-guides{grid-template-columns:1fr}.pg-head,.pg-body{padding:1rem 1.25rem}}
+</style>
+<script>if(history.scrollRestoration)history.scrollRestoration="manual";window.addEventListener("load",function(){window.scrollTo(0,0);});</script>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-home" href="./">
+    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8,1 2,7 8,13"/><line x1="2" y1="7" x2="13" y2="7"/></svg>
+    Home
+  </a>
+  <span class="nav-sep">/</span>
+  <a class="nav-parent" href="workbook.html">Workbooks and Guides</a>
+  <span class="nav-title">Practitioner Guides</span>
+</nav>
+
+<div class="hero">
+  <div class="wip-badge">Work in progress</div>
+  <h1>Practitioner Guides</h1>
+  <p>Six role-based guides for practitioners working with hydrospatial data in Seychelles and the Western Indian Ocean. Each guide maps the platform's knowledge clusters and workbook exercises to the data questions most relevant to that role.</p>
+</div>
+
+<div class="wip-notice">
+  <strong>These guides are in development.</strong> Role descriptions, cluster mappings and exercise recommendations will be refined through stakeholder review before the platform's public launch.
+</div>
+
+<div class="main">
+
+  <div class="persona-guides">
+
+    <div class="pg-card">
+      <div class="pg-head">
+        <div class="pg-title">Marine Spatial Planner</div>
+      </div>
+      <div class="pg-body">
+        <div class="pg-section">
+          <span class="pg-label">Role context</span>
+          <p class="pg-text">Responsible for developing and implementing marine spatial plans under the Seychelles Maritime Zone Act and related instruments. Work involves integrating multiple data sources across habitat, bathymetry, and human use layers to produce legally defensible spatial designations.</p>
+        </div>
+        <div class="pg-section">
+          <span class="pg-label">Core hydrospatial questions</span>
+          <p class="pg-text">Which spatial datasets are authoritative for zone boundary delineation? How do I document the evidence chain from raw data to a plan boundary? What data gaps affect defensibility of a proposed designation?</p>
+        </div>
+        <div class="pg-section">
+          <span class="pg-label">Priority knowledge clusters</span>
+          <div class="pg-meta">
+            <span class="pg-cluster c1">C1 Foundations</span>
+            <span class="pg-cluster c3">C3 Data Quality</span>
+            <span class="pg-cluster c4">C4 MSDI</span>
+            <span class="pg-cluster c5">C5 Decisions</span>
+          </div>
+        </div>
+        <div class="pg-section">
+          <span class="pg-label">Recommended exercises</span>
+          <div class="pg-tags">
+            <span class="pg-ex">01 Decision brief</span>
+            <span class="pg-ex">02 Source and rights register</span>
+            <span class="pg-ex">05 Fitness-for-purpose rubric</span>
+            <span class="pg-ex">07 MSP and MPA evidence chain</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pg-card">
+      <div class="pg-head">
+        <div class="pg-title">Hydrographic Surveyor</div>
+      </div>
+      <div class="pg-body">
+        <div class="pg-section">
+          <span class="pg-label">Role context</span>
+          <p class="pg-text">Collects and processes bathymetric, tidal, and seabed data for navigation, infrastructure, and environmental applications. Works within or alongside the Seychelles Maritime Safety Administration and is responsible for data quality assurance and IHO standard compliance.</p>
+        </div>
+        <div class="pg-section">
+          <span class="pg-label">Core hydrospatial questions</span>
+          <p class="pg-text">How do I document datum and tidal reduction choices so downstream users understand the reference surface? What quality flags should accompany survey products shared with other agencies? How do I explain IHO order categories to non-technical decision makers?</p>
+        </div>
+        <div class="pg-section">
+          <span class="pg-label">Priority knowledge clusters</span>
+          <div class="pg-meta">
+            <span class="pg-cluster c2">C2 Seabed</span>
+            <span class="pg-cluster c3">C3 Data Quality</span>
+            <span class="pg-cluster c4">C4 MSDI</span>
+          </div>
+        </div>
+        <div class="pg-section">
+          <span class="pg-label">Recommended exercises</span>
+          <div class="pg-tags">
+            <span class="pg-ex">03 Coordinate and datum worksheet</span>
+            <span class="pg-ex">04 Quality and coverage worksheet</span>
+            <span class="pg-ex">06 National stewardship agreement</span>
+            <span class="pg-ex">09 Field and low-bandwidth checklist</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pg-card">
+      <div class="pg-head">
+        <div class="pg-title">GIS Specialist</div>
+      </div>
+      <div class="pg-body">
+        <div class="pg-section">
+          <span class="pg-label">Role context</span>
+          <p class="pg-text">Manages spatial datasets for a government agency or NGO, produces maps and analysis products for planning and reporting, and maintains the institutional GIS library. Often the first point of contact when other practitioners need help locating or combining data layers.</p>
+        </div>
+        <div class="pg-section">
+          <span class="pg-label">Core hydrospatial questions</span>
+          <p class="pg-text">How do I identify and document CRS mismatches before an overlay analysis? What licence conditions apply to data I am combining from multiple sources? How do I build a reusable data register that other colleagues can maintain?</p>
+        </div>
+        <div class="pg-section">
+          <span class="pg-label">Priority knowledge clusters</span>
+          <div class="pg-meta">
+            <span class="pg-cluster c1">C1 Foundations</span>
+            <span class="pg-cluster c3">C3 Data Quality</span>
+            <span class="pg-cluster c4">C4 MSDI</span>
+          </div>
+        </div>
+        <div class="pg-section">
+          <span class="pg-label">Recommended exercises</span>
+          <div class="pg-tags">
+            <span class="pg-ex">02 Source and rights register</span>
+            <span class="pg-ex">03 Coordinate and datum worksheet</span>
+            <span class="pg-ex">04 Quality and coverage worksheet</span>
+            <span class="pg-ex">08 Seychelles Bank exercise</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pg-card">
+      <div class="pg-head">
+        <div class="pg-title">Fisheries Manager</div>
+      </div>
+      <div class="pg-body">
+        <div class="pg-section">
+          <span class="pg-label">Role context</span>
+          <p class="pg-text">Advises on and implements fisheries management measures under the Fishing Act and related IOTC obligations. Needs to relate stock assessment outputs, vessel monitoring system data, and habitat maps to management decisions and reporting requirements.</p>
+        </div>
+        <div class="pg-section">
+          <span class="pg-label">Core hydrospatial questions</span>
+          <p class="pg-text">What spatial evidence supports a proposed seasonal closure or gear restriction? How do I communicate data uncertainty to the Fisheries Tribunal or the IOTC? Which habitat datasets are reliable enough to delineate essential fish habitat in a management plan?</p>
+        </div>
+        <div class="pg-section">
+          <span class="pg-label">Priority knowledge clusters</span>
+          <div class="pg-meta">
+            <span class="pg-cluster c2">C2 Seabed</span>
+            <span class="pg-cluster c3">C3 Data Quality</span>
+            <span class="pg-cluster c5">C5 Decisions</span>
+          </div>
+        </div>
+        <div class="pg-section">
+          <span class="pg-label">Recommended exercises</span>
+          <div class="pg-tags">
+            <span class="pg-ex">01 Decision brief</span>
+            <span class="pg-ex">05 Fitness-for-purpose rubric</span>
+            <span class="pg-ex">07 MSP and MPA evidence chain</span>
+            <span class="pg-ex">08 Seychelles Bank exercise</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pg-card">
+      <div class="pg-head">
+        <div class="pg-title">Conservation Officer</div>
+      </div>
+      <div class="pg-body">
+        <div class="pg-section">
+          <span class="pg-label">Role context</span>
+          <p class="pg-text">Monitors marine protected areas, manages habitat data, and coordinates with enforcement and community liaison programmes. Works under the Environment Protection Act and the Protected Areas Act, and contributes to CBD and BBNJ reporting.</p>
+        </div>
+        <div class="pg-section">
+          <span class="pg-label">Core hydrospatial questions</span>
+          <p class="pg-text">How do I confirm that an MPA boundary in a global database matches the gazette boundary? What data do I need to establish a defensible baseline for effectiveness monitoring? How should I handle habitat maps produced by different projects with different methods?</p>
+        </div>
+        <div class="pg-section">
+          <span class="pg-label">Priority knowledge clusters</span>
+          <div class="pg-meta">
+            <span class="pg-cluster c2">C2 Seabed</span>
+            <span class="pg-cluster c3">C3 Data Quality</span>
+            <span class="pg-cluster c5">C5 Decisions</span>
+          </div>
+        </div>
+        <div class="pg-section">
+          <span class="pg-label">Recommended exercises</span>
+          <div class="pg-tags">
+            <span class="pg-ex">02 Source and rights register</span>
+            <span class="pg-ex">04 Quality and coverage worksheet</span>
+            <span class="pg-ex">05 Fitness-for-purpose rubric</span>
+            <span class="pg-ex">07 MSP and MPA evidence chain</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pg-card">
+      <div class="pg-head">
+        <div class="pg-title">Maritime Policy Officer</div>
+      </div>
+      <div class="pg-body">
+        <div class="pg-section">
+          <span class="pg-label">Role context</span>
+          <p class="pg-text">Advises on treaty obligations, negotiates bilateral and multilateral maritime instruments, and briefs senior officials on the spatial and legal implications of boundary claims and resource agreements. Needs to translate technical data limitations into policy risk.</p>
+        </div>
+        <div class="pg-section">
+          <span class="pg-label">Core hydrospatial questions</span>
+          <p class="pg-text">What constitutes sufficient hydrographic evidence for an UNCLOS Article 76 continental shelf submission? How do I communicate the difference between an operational chart and a legal boundary to a non-technical minister? What data management obligations attach to joint development agreements?</p>
+        </div>
+        <div class="pg-section">
+          <span class="pg-label">Priority knowledge clusters</span>
+          <div class="pg-meta">
+            <span class="pg-cluster c1">C1 Foundations</span>
+            <span class="pg-cluster c4">C4 MSDI</span>
+            <span class="pg-cluster c5">C5 Decisions</span>
+          </div>
+        </div>
+        <div class="pg-section">
+          <span class="pg-label">Recommended exercises</span>
+          <div class="pg-tags">
+            <span class="pg-ex">01 Decision brief</span>
+            <span class="pg-ex">06 National stewardship agreement</span>
+            <span class="pg-ex">07 MSP and MPA evidence chain</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer class="footer">
+  &copy; 2026&ndash;27 SHORE Institute &middot; Victoria, Seychelles &middot; Funded by SeyCCAT / ETF
+</footer>
+</body>
+</html>

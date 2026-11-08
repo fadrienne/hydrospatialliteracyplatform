@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Seychelles Hydrospatial Data Directory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--deep:#071525;--navy:#0a1e3a;--ocean:#1e82c0;--white:#fff;--c1:#0a2a52;--c2:#1a3a6e;--c3:#1a5a90;--c4:#1e6aaa;--c5:#1565a8;--text:#1a2a3a;--muted:#4a5a6a;--rule:#d4dde6;--bg:#f7f9fb;--amber:#e8921e}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;font-weight:400;color:var(--text);background:var(--white);line-height:1.6}
+a{color:var(--ocean);text-decoration:none}
+a:hover{text-decoration:underline}
+.nav{background:var(--deep);padding:0.9rem 2rem;display:flex;align-items:center;gap:1.5rem}
+.nav-home{color:rgba(255,255,255,0.55);font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;letter-spacing:0.03em;text-transform:uppercase;display:flex;align-items:center;gap:0.4rem;transition:color 0.15s}
+.nav-home:hover{color:#fff;text-decoration:none}
+.nav-home svg{width:14px;height:14px;flex-shrink:0}
+.nav-title{color:#fff;font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:800;letter-spacing:0.01em}
+.hero{background:var(--navy);padding:2.5rem 2rem 2rem;position:relative;overflow:hidden}
+.hero::after{content:'35';position:absolute;right:1.5rem;bottom:-0.5rem;font-family:'Syne',sans-serif;font-weight:800;font-size:5rem;color:rgba(255,255,255,0.05);line-height:1;pointer-events:none}
+.hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.5rem,3.5vw,2.2rem);color:#fff;line-height:1.2}
+.hero p{margin-top:0.6rem;color:rgba(255,255,255,0.6);font-size:0.95rem;max-width:600px}
+.controls{background:var(--bg);border-bottom:1px solid var(--rule);padding:1rem 2rem;display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center}
+.search-wrap{flex:1 1 220px;position:relative}
+.search-wrap input{width:100%;padding:0.5rem 0.75rem 0.5rem 2.2rem;border:1px solid var(--rule);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--text);background:#fff;outline:none}
+.search-wrap input:focus{border-color:var(--ocean)}
+.search-icon{position:absolute;left:0.6rem;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.filters{display:flex;flex-wrap:wrap;gap:0.4rem}
+.filter-btn{padding:0.3rem 0.75rem;border:1px solid var(--rule);border-radius:20px;font-size:0.78rem;font-weight:500;cursor:pointer;background:#fff;color:var(--muted);transition:all 0.15s;font-family:'DM Sans',sans-serif}
+.filter-btn.active,.filter-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.filter-btn[data-cluster="1"].active{background:var(--c1);border-color:var(--c1)}
+.filter-btn[data-cluster="2"].active{background:var(--c2);border-color:var(--c2)}
+.filter-btn[data-cluster="3"].active{background:var(--c3);border-color:var(--c3)}
+.filter-btn[data-cluster="4"].active{background:var(--c4);border-color:var(--c4)}
+.filter-btn[data-cluster="5"].active{background:var(--c5);border-color:var(--c5)}
+.count{font-size:0.78rem;color:var(--muted);white-space:nowrap;margin-left:auto}
+.directory{max-width:980px;margin:0 auto;padding:2rem 2rem 4rem;display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.card{border:1px solid var(--rule);border-radius:8px;overflow:hidden;display:flex;flex-direction:column}
+.card[hidden]{display:none}
+.card-head{padding:0.9rem 1rem 0.75rem;border-left:4px solid var(--rule)}
+.card[data-cluster="1"] .card-head{border-left-color:var(--c1)}
+.card[data-cluster="2"] .card-head{border-left-color:var(--c2)}
+.card[data-cluster="3"] .card-head{border-left-color:var(--c3)}
+.card[data-cluster="4"] .card-head{border-left-color:var(--c4)}
+.card[data-cluster="5"] .card-head{border-left-color:var(--c5)}
+.card-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.88rem;color:var(--navy);line-height:1.3}
+.card-provider{font-size:0.75rem;color:var(--muted);margin-top:0.2rem}
+.card-body{padding:0.6rem 1rem 0.9rem;flex:1;display:flex;flex-direction:column;gap:0.4rem}
+.card-use{font-size:0.82rem;color:var(--text);line-height:1.5;flex:1}
+.card-meta{display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.5rem}
+.badge{display:inline-flex;align-items:center;gap:0.25rem;font-size:0.68rem;font-weight:500;padding:0.18rem 0.5rem;border-radius:3px;text-transform:uppercase;letter-spacing:0.04em;white-space:nowrap}
+.badge-cluster{background:#eaf1f8;color:var(--muted)}
+.badge-free{background:#e6f4ea;color:#2e7d32}
+.badge-restricted{background:#fce8e6;color:#c62828}
+.badge-login{background:#fff3cd;color:#7a5c00}
+.badge-format{background:#f0f5fa;color:var(--muted)}
+.card-link{display:block;margin-top:0.6rem;font-size:0.78rem;color:var(--ocean);font-weight:500;word-break:break-all}
+.empty{grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);font-size:0.95rem;display:none}
+.note{background:#f0f5fa;border-top:1px solid var(--rule);padding:0.75rem 1rem;font-size:0.72rem;color:var(--muted);max-width:980px;margin:0 auto 2rem}
+.footer{background:var(--deep);color:rgba(255,255,255,0.4);text-align:center;font-size:0.78rem;padding:1.4rem 2rem}
+@media(max-width:600px){.controls{padding:0.75rem 1rem}.directory{padding:1.25rem 1rem 3rem;grid-template-columns:1fr}}
+</style>
+<script>if(history.scrollRestoration)history.scrollRestoration="manual";window.addEventListener("load",function(){window.scrollTo(0,0);});</script>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-home" href="./">
+    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8,1 2,7 8,13"/><line x1="2" y1="7" x2="13" y2="7"/></svg>
+    Home
+  </a>
+  <span class="nav-title">Hydrospatial Literacy Platform</span>
+</nav>
+
+<div class="hero">
+  <h1>Seychelles Hydrospatial Data Directory</h1>
+  <p>35 verified entries covering bathymetry, oceanography, earth observation, biodiversity and planning datasets relevant to Seychelles and the Western Indian Ocean.</p>
+</div>
+
+<div class="controls">
+  <div class="search-wrap">
+    <svg class="search-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="5.5" cy="5.5" r="4"/><line x1="9" y1="9" x2="13" y2="13"/></svg>
+    <input id="search" type="search" placeholder="Search datasets…" aria-label="Search directory">
+  </div>
+  <div class="filters" role="group" aria-label="Filter by cluster">
+    <button class="filter-btn active" data-cluster="all">All</button>
+    <button class="filter-btn" data-cluster="1">Cluster 1</button>
+    <button class="filter-btn" data-cluster="2">Cluster 2</button>
+    <button class="filter-btn" data-cluster="3">Cluster 3</button>
+    <button class="filter-btn" data-cluster="4">Cluster 4</button>
+    <button class="filter-btn" data-cluster="5">Cluster 5</button>
+  </div>
+  <span class="count" id="count">35 datasets</span>
+</div>
+
+<div class="note">All entries verified 2026-11-04. Verification records whether source metadata was accessible; it does not confirm data download or scientific validation. Access conditions and licences may change.</div>
+
+<div class="directory" id="directory">
+  <div class="empty" id="empty">No datasets match your search.</div>
+
+  <div class="card" data-cluster="2">
+    <div class="card-head"><div class="card-title">GEBCO_2026 global bathymetric grid</div><div class="card-provider">GEBCO / IHO / IOC-UNESCO / Seabed 2030</div></div>
+    <div class="card-body">
+      <div class="card-use">Global 15-arc-second coverage includes Seychelles. HTTP 200 product metadata verified. Provider documents global files, OPeNDAP and regional extraction; no data file tested.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 2</span>
+        <span class="badge badge-free">Free use, attribution</span>
+        <span class="badge badge-format">NetCDF / GeoTIFF</span>
+      </div>
+      <a class="card-link" href="https://www.gebco.net/data-products-gridded-bathymetry-data/gebco2026-grid" target="_blank" rel="noopener">gebco.net &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="2">
+    <div class="card-head"><div class="card-title">ETOPO 2022 global relief model</div><div class="card-provider">NOAA NCEI</div></div>
+    <div class="card-body">
+      <div class="card-use">Global topography and bathymetry covers WIO. Product page verified; direct download not verified.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 2</span>
+        <span class="badge badge-free">Public NOAA</span>
+        <span class="badge badge-format">GeoTIFF / NetCDF</span>
+      </div>
+      <a class="card-link" href="https://www.ncei.noaa.gov/products/etopo-global-relief-model" target="_blank" rel="noopener">ncei.noaa.gov &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="2">
+    <div class="card-head"><div class="card-title">Copernicus Global Ocean Physics Reanalysis</div><div class="card-provider">Copernicus Marine / Mercator Ocean International</div></div>
+    <div class="card-body">
+      <div class="card-use">Global temperature, salinity, currents and sea level include WIO. Free sign-in required for downloads and subsetting.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 2</span>
+        <span class="badge badge-login">Login required</span>
+        <span class="badge badge-format">NetCDF</span>
+      </div>
+      <a class="card-link" href="https://data.marine.copernicus.eu/product/GLOBAL_MULTIYEAR_PHY_001_030/description" target="_blank" rel="noopener">marine.copernicus.eu &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="2">
+    <div class="card-head"><div class="card-title">Copernicus Global Ocean Biogeochemistry Hindcast</div><div class="card-provider">Copernicus Marine / Mercator Ocean International</div></div>
+    <div class="card-body">
+      <div class="card-use">Global nutrients, oxygen and chlorophyll include WIO. Free sign-in documented for download. Distinct biogeochemical model product.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 2</span>
+        <span class="badge badge-login">Login required</span>
+        <span class="badge badge-format">NetCDF</span>
+      </div>
+      <a class="card-link" href="https://data.marine.copernicus.eu/product/GLOBAL_MULTIYEAR_BGC_001_029/description" target="_blank" rel="noopener">marine.copernicus.eu &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="2">
+    <div class="card-head"><div class="card-title">Copernicus Global Ocean Waves Reanalysis WAVERYS</div><div class="card-provider">Copernicus Marine / Mercator Ocean / Meteo-France</div></div>
+    <div class="card-body">
+      <div class="card-use">Global significant wave height, period and direction cover WIO. Free sign-in documented for downloads.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 2</span>
+        <span class="badge badge-login">Login required</span>
+        <span class="badge badge-format">NetCDF</span>
+      </div>
+      <a class="card-link" href="https://data.marine.copernicus.eu/product/GLOBAL_MULTIYEAR_WAV_001_032/description" target="_blank" rel="noopener">marine.copernicus.eu &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="2">
+    <div class="card-head"><div class="card-title">Copernicus DUACS gridded sea surface heights</div><div class="card-provider">Copernicus Marine / DUACS</div></div>
+    <div class="card-body">
+      <div class="card-use">Global satellite altimetry, sea-level anomaly and geostrophic currents include WIO. Free sign-in documented for downloads.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 2</span>
+        <span class="badge badge-login">Login required</span>
+        <span class="badge badge-format">NetCDF</span>
+      </div>
+      <a class="card-link" href="https://data.marine.copernicus.eu/product/SEALEVEL_GLO_PHY_L4_MY_008_047/description" target="_blank" rel="noopener">marine.copernicus.eu &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="2">
+    <div class="card-head"><div class="card-title">Argo GDAC float profile observations</div><div class="card-provider">International Argo programme / Ifremer GDAC</div></div>
+    <div class="card-body">
+      <div class="card-use">Anonymous partial NetCDF download confirmed. Use index and QC flags to select regional profiles. CC BY 4.0.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 2</span>
+        <span class="badge badge-free">CC BY 4.0</span>
+        <span class="badge badge-format">NetCDF</span>
+      </div>
+      <a class="card-link" href="https://data-argo.ifremer.fr/" target="_blank" rel="noopener">data-argo.ifremer.fr &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="2">
+    <div class="card-head"><div class="card-title">World Ocean Atlas 2023 climatological fields</div><div class="card-provider">NOAA NCEI</div></div>
+    <div class="card-body">
+      <div class="card-use">Anonymous partial NetCDF download verified for annual 1-degree temperature file. Global climatology, not individual measurements.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 2</span>
+        <span class="badge badge-free">Public NOAA</span>
+        <span class="badge badge-format">NetCDF / ASCII</span>
+      </div>
+      <a class="card-link" href="https://www.ncei.noaa.gov/access/world-ocean-atlas-2023/" target="_blank" rel="noopener">ncei.noaa.gov &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="2">
+    <div class="card-head"><div class="card-title">World Ocean Database 2023 profile archive</div><div class="card-provider">NOAA NCEI</div></div>
+    <div class="card-body">
+      <div class="card-use">Global historical in-situ profiles relevant to WIO. WODselect extraction not exercised. Distinct observational archive underlying WOA climatology.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 2</span>
+        <span class="badge badge-free">Public NOAA</span>
+        <span class="badge badge-format">WOD ASCII / NetCDF</span>
+      </div>
+      <a class="card-link" href="https://www.ncei.noaa.gov/products/world-ocean-database" target="_blank" rel="noopener">ncei.noaa.gov &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="2">
+    <div class="card-head"><div class="card-title">NASA OSCAR final surface currents v2.0</div><div class="card-provider">NASA / PO.DAAC</div></div>
+    <div class="card-body">
+      <div class="card-use">Global 0.25-degree near-surface current analysis covers WIO. Earthdata account is the standard archive route. Distinct diagnostic product.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 2</span>
+        <span class="badge badge-login">Earthdata login</span>
+        <span class="badge badge-format">NetCDF</span>
+      </div>
+      <a class="card-link" href="https://podaac.jpl.nasa.gov/dataset/OSCAR_L4_OC_FINAL_V2.0" target="_blank" rel="noopener">podaac.jpl.nasa.gov &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="2">
+    <div class="card-head"><div class="card-title">JPL SMAP Level-3 CAP sea-surface salinity v5</div><div class="card-provider">NASA JPL / PO.DAAC</div></div>
+    <div class="card-body">
+      <div class="card-use">Global salinity observations support WIO water-mass studies, with coastal contamination and resolution caveats. Earthdata account is the standard archive route.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 2</span>
+        <span class="badge badge-login">Earthdata login</span>
+        <span class="badge badge-format">NetCDF</span>
+      </div>
+      <a class="card-link" href="https://podaac.jpl.nasa.gov/dataset/SMAP_JPL_L3_SSS_CAP_8DAY-RUNNINGMEAN_V5" target="_blank" rel="noopener">podaac.jpl.nasa.gov &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="2">
+    <div class="card-head"><div class="card-title">ERA5 hourly atmospheric and wave reanalysis</div><div class="card-provider">ECMWF / Copernicus Climate Change Service</div></div>
+    <div class="card-body">
+      <div class="card-use">Global hourly winds, pressure and waves include WIO. CDS retrieval requires free account, API credentials and licence acceptance.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 2</span>
+        <span class="badge badge-login">CDS account</span>
+        <span class="badge badge-format">GRIB / NetCDF</span>
+      </div>
+      <a class="card-link" href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview" target="_blank" rel="noopener">cds.climate.copernicus.eu &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="2">
+    <div class="card-head"><div class="card-title">Surface Ocean CO2 Atlas SOCAT v2026</div><div class="card-provider">SOCAT community / NOAA NCEI / GEOMAR / VLIZ</div></div>
+    <div class="card-body">
+      <div class="card-use">Global and Indian Ocean synthesis; gridded files available. Use regional/subset services; global synthesis ZIP is approximately 1.4 GB. Cite release DOI.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 2</span>
+        <span class="badge badge-free">Data use statement</span>
+        <span class="badge badge-format">CSV / NetCDF</span>
+      </div>
+      <a class="card-link" href="https://socat.info/index.php/version-2026/" target="_blank" rel="noopener">socat.info &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="2">
+    <div class="card-head"><div class="card-title">GLODAPv3 merged ocean biogeochemistry</div><div class="card-provider">GLODAP community / NOAA NCEI / GEOMAR / ICOS OTC</div></div>
+    <div class="card-body">
+      <div class="card-use">Anonymous partial Indian Ocean CSV download verified. Header includes position, pressure, temperature, salinity, oxygen, nitrate and QC fields.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 2</span>
+        <span class="badge badge-free">Data use statement</span>
+        <span class="badge badge-format">CSV / MATLAB</span>
+      </div>
+      <a class="card-link" href="https://glodap.info/index.php/merged-and-adjusted-data-product-v3/" target="_blank" rel="noopener">glodap.info &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="2">
+    <div class="card-head"><div class="card-title">NOAA Global Drifter Program QC trajectories v2.01</div><div class="card-provider">NOAA AOML / Global Drifter Program / NCEI</div></div>
+    <div class="card-body">
+      <div class="card-use">ERDDAP metadata/schema endpoint verified without login; global coverage includes WIO. No data query tested. CC BY 4.0.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 2</span>
+        <span class="badge badge-free">CC BY 4.0</span>
+        <span class="badge badge-format">NetCDF / JSON</span>
+      </div>
+      <a class="card-link" href="https://erddap.aoml.noaa.gov/gdp/erddap/info/drifter_hourly_qc/index.json" target="_blank" rel="noopener">erddap.aoml.noaa.gov &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="3">
+    <div class="card-head"><div class="card-title">NASA Aqua MODIS chlorophyll v2022.0</div><div class="card-provider">NASA OB.DAAC / Ocean Biology Processing Group</div></div>
+    <div class="card-body">
+      <div class="card-use">Global ocean colour covers WIO. CMR collection and one granule's metadata verified. Free Earthdata account required for download.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 3</span>
+        <span class="badge badge-login">Earthdata login</span>
+        <span class="badge badge-format">NetCDF</span>
+      </div>
+      <a class="card-link" href="https://oceancolor.gsfc.nasa.gov/" target="_blank" rel="noopener">oceancolor.gsfc.nasa.gov &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="3">
+    <div class="card-head"><div class="card-title">ESA WorldCover 2021 v200 land-cover classification</div><div class="card-provider">ESA WorldCover consortium / VITO</div></div>
+    <div class="card-body">
+      <div class="card-use">10 m classes support coastal context. Anonymous Seychelles-area tile probe verified from public AWS. Do not infer change directly between 2020/2021 versions.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 3</span>
+        <span class="badge badge-free">CC BY 4.0</span>
+        <span class="badge badge-format">Cloud-Optimized GeoTIFF</span>
+      </div>
+      <a class="card-link" href="https://esa-worldcover.org/en/data-access" target="_blank" rel="noopener">esa-worldcover.org &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="3">
+    <div class="card-head"><div class="card-title">JRC Global Surface Water occurrence v1.5</div><div class="card-provider">European Commission JRC / Google</div></div>
+    <div class="card-body">
+      <div class="card-use">Global inland/coastal water context 1984-2024 includes Seychelles. Not a bathymetry or open-ocean mask product. Tile download not tested.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 3</span>
+        <span class="badge badge-free">Copernicus free use</span>
+        <span class="badge badge-format">GeoTIFF</span>
+      </div>
+      <a class="card-link" href="https://global-surface-water.appspot.com/download" target="_blank" rel="noopener">global-surface-water.appspot.com &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="3">
+    <div class="card-head"><div class="card-title">Sentinel-2 MSI multispectral imagery</div><div class="card-provider">ESA / European Union Copernicus Data Space Ecosystem</div></div>
+    <div class="card-body">
+      <div class="card-use">Relevant to Seychelles shallow-water mapping. Scene availability not verified; standard CDSE downloads require free sign-in.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 3</span>
+        <span class="badge badge-login">CDSE login</span>
+        <span class="badge badge-format">SAFE / JPEG2000</span>
+      </div>
+      <a class="card-link" href="https://dataspace.copernicus.eu/data-collections/copernicus-sentinel-missions/sentinel-2" target="_blank" rel="noopener">dataspace.copernicus.eu &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="3">
+    <div class="card-head"><div class="card-title">Landsat Collection 2 imagery and science products</div><div class="card-provider">USGS / NASA</div></div>
+    <div class="card-body">
+      <div class="card-use">Global land/coastal imagery applies to Seychelles. Collection overview verified; EarthExplorer typically requires free login. No scene tested.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 3</span>
+        <span class="badge badge-login">EarthExplorer login</span>
+        <span class="badge badge-format">GeoTIFF</span>
+      </div>
+      <a class="card-link" href="https://www.usgs.gov/landsat-missions/landsat-collection-2" target="_blank" rel="noopener">usgs.gov &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="3">
+    <div class="card-head"><div class="card-title">NOAA OISST v2.1 daily global sea-surface temperature</div><div class="card-provider">NOAA NCEI</div></div>
+    <div class="card-body">
+      <div class="card-use">Global 0.25-degree data cover WIO. Anonymous partial NetCDF download verified. Coarse for island-scale coastal analysis.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 3</span>
+        <span class="badge badge-free">Public NOAA</span>
+        <span class="badge badge-format">NetCDF-4</span>
+      </div>
+      <a class="card-link" href="https://www.ncei.noaa.gov/products/optimum-interpolation-sst" target="_blank" rel="noopener">ncei.noaa.gov &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="3">
+    <div class="card-head"><div class="card-title">NASA GHRSST MUR global foundation SST v4.1</div><div class="card-provider">NASA JPL / PO.DAAC</div></div>
+    <div class="card-body">
+      <div class="card-use">Global high-resolution analysed SST includes WIO. Product metadata verified; Earthdata registration is the standard access route.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 3</span>
+        <span class="badge badge-login">Earthdata login</span>
+        <span class="badge badge-format">NetCDF</span>
+      </div>
+      <a class="card-link" href="https://podaac.jpl.nasa.gov/dataset/MUR-JPL-L4-GLOB-v4.1" target="_blank" rel="noopener">podaac.jpl.nasa.gov &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="3">
+    <div class="card-head"><div class="card-title">NASA GPM IMERG precipitation estimates</div><div class="card-provider">NASA GPM / PPS / GES DISC</div></div>
+    <div class="card-body">
+      <div class="card-use">Global precipitation estimates include Seychelles and WIO for runoff/storm context. Product metadata verified; authentication depends on distribution route.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 3</span>
+        <span class="badge badge-login">NASA login</span>
+        <span class="badge badge-format">HDF5 / NetCDF</span>
+      </div>
+      <a class="card-link" href="https://gpm.nasa.gov/data/imerg" target="_blank" rel="noopener">gpm.nasa.gov &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="3">
+    <div class="card-head"><div class="card-title">Global Fishing Watch apparent fishing activity</div><div class="card-provider">Global Fishing Watch</div></div>
+    <div class="card-body">
+      <div class="card-use">AIS/VMS-derived activity covers WIO but misses much small-vessel activity. Downloads require free registration. Non-commercial use only.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 3</span>
+        <span class="badge badge-restricted">CC BY-NC 4.0</span>
+        <span class="badge badge-login">Registration</span>
+      </div>
+      <a class="card-link" href="https://globalfishingwatch.org/dataset-and-code-fishing-activity/" target="_blank" rel="noopener">globalfishingwatch.org &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="1">
+    <div class="card-head"><div class="card-title">GSHHG global shoreline database v2.3.7</div><div class="card-provider">GSHHG authors / Generic Mapping Tools</div></div>
+    <div class="card-body">
+      <div class="card-use">Global shoreline includes WIO islands. Anonymous partial download verified. LGPL-3.0; retain notices and attribution.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 1</span>
+        <span class="badge badge-free">LGPL-3.0</span>
+        <span class="badge badge-format">Shapefile</span>
+      </div>
+      <a class="card-link" href="https://github.com/GenericMappingTools/gshhg-gmt/releases/tag/2.3.7" target="_blank" rel="noopener">github.com/GenericMappingTools &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="1">
+    <div class="card-head"><div class="card-title">Natural Earth 1:10m coastline</div><div class="card-provider">Natural Earth</div></div>
+    <div class="card-body">
+      <div class="card-use">Global small-scale coastline covers WIO but may omit small Seychelles features. Anonymous partial download verified. Unsuitable for navigation or engineering.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 1</span>
+        <span class="badge badge-free">Public domain</span>
+        <span class="badge badge-format">Shapefile</span>
+      </div>
+      <a class="card-link" href="https://www.naturalearthdata.com/downloads/10m-physical-vectors/" target="_blank" rel="noopener">naturalearthdata.com &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="1">
+    <div class="card-head"><div class="card-title">OpenStreetMap geographic features, Seychelles extract</div><div class="card-provider">OpenStreetMap contributors / Geofabrik</div></div>
+    <div class="card-body">
+      <div class="card-use">Covers mapped Seychelles coast and infrastructure with variable volunteer completeness. HTTP 206 range sample verified. ODbL 1.0.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 1</span>
+        <span class="badge badge-free">ODbL 1.0</span>
+        <span class="badge badge-format">OSM PBF</span>
+      </div>
+      <a class="card-link" href="https://download.geofabrik.de/africa/seychelles-latest.osm.pbf" target="_blank" rel="noopener">geofabrik.de &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="1">
+    <div class="card-head"><div class="card-title">PSMSL monthly mean sea level, Point La Rue</div><div class="card-provider">Permanent Service for Mean Sea Level / NOC</div></div>
+    <div class="card-body">
+      <div class="card-use">Point La Rue, Seychelles (-4.667, 55.533), station 1846. Anonymous 512-byte data sample verified. Reference datum and QC flags matter.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 1</span>
+        <span class="badge badge-free">Free access, cite PSMSL</span>
+        <span class="badge badge-format">Semicolon-delimited text</span>
+      </div>
+      <a class="card-link" href="https://psmsl.org/data/obtaining/stations/1846.php" target="_blank" rel="noopener">psmsl.org &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="1">
+    <div class="card-head"><div class="card-title">Copernicus DEM GLO-30 digital surface model</div><div class="card-provider">ESA / DLR / Airbus; AWS distribution by Sinergise</div></div>
+    <div class="card-body">
+      <div class="card-use">Public AWS route needs no account. Seychelles-area objects exist in bucket. DSM supports terrestrial coastal context, not seabed depth.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 1</span>
+        <span class="badge badge-free">Copernicus DEM licence</span>
+        <span class="badge badge-format">Cloud-Optimized GeoTIFF</span>
+      </div>
+      <a class="card-link" href="https://registry.opendata.aws/copernicus-dem/" target="_blank" rel="noopener">registry.opendata.aws &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="4">
+    <div class="card-head"><div class="card-title">Marine Regions IHO Sea Areas v3</div><div class="card-provider">Flanders Marine Institute (VLIZ) / IHO</div></div>
+    <div class="card-body">
+      <div class="card-use">Indian Ocean sea-area boundaries support WIO regional indexing. Registration required. Non-commercial and share-alike conditions apply. Cite DOI 10.14284/323.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 4</span>
+        <span class="badge badge-restricted">CC BY-NC-SA 4.0</span>
+        <span class="badge badge-login">Registration</span>
+      </div>
+      <a class="card-link" href="https://www.marineregions.org/" target="_blank" rel="noopener">marineregions.org &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="5">
+    <div class="card-head"><div class="card-title">Global Mangrove Watch v4.1.12 mangrove extent</div><div class="card-provider">Aberystwyth University / soloEO / Wetlands International / TNC / JAXA</div></div>
+    <div class="card-body">
+      <div class="card-use">30 m global extent 1985-2025; DN 1=mangrove, 0=non-mangrove. Seychelles applications include coastal blue carbon. Tile download not tested.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 5</span>
+        <span class="badge badge-free">JAXA research terms</span>
+        <span class="badge badge-format">GeoTIFF</span>
+      </div>
+      <a class="card-link" href="https://www.eorc.jaxa.jp/ALOS/en/dataset/gmw_e.htm" target="_blank" rel="noopener">eorc.jaxa.jp &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="5">
+    <div class="card-head"><div class="card-title">UNEP-WCMC Global Distribution of Coral Reefs v4.1</div><div class="card-provider">UNEP-WCMC / WorldFish / WRI / TNC</div></div>
+    <div class="card-body">
+      <div class="card-use">Global tropical reefs include WIO. API sample verified. Contact WCMC before redistribution and for commercial use.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 5</span>
+        <span class="badge badge-restricted">WCMC licence, restricted</span>
+      </div>
+      <a class="card-link" href="https://resources.unep-wcmc.org/products/0613604367334836863f5c0c10e452bf" target="_blank" rel="noopener">resources.unep-wcmc.org &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="5">
+    <div class="card-head"><div class="card-title">UNEP-WCMC Global Distribution of Seagrasses v7.1</div><div class="card-provider">UNEP-WCMC / Frederick T. Short / contributors</div></div>
+    <div class="card-body">
+      <div class="card-use">Global occurrence compilation relevant to WIO; local completeness unassessed. Contact WCMC before redistribution and for commercial use.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 5</span>
+        <span class="badge badge-restricted">WCMC licence, restricted</span>
+      </div>
+      <a class="card-link" href="https://resources.unep-wcmc.org/products/aaa46cd3d3d640b2916b8f0a0ffe07cb" target="_blank" rel="noopener">resources.unep-wcmc.org &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="5">
+    <div class="card-head"><div class="card-title">Allen Coral Atlas shallow-reef habitat maps</div><div class="card-provider">Allen Coral Atlas Partnership / Arizona State University</div></div>
+    <div class="card-body">
+      <div class="card-use">Tropical WIO coverage is depth/visibility limited. Capabilities metadata verified; FAQ states downloads require free login. Review redistribution terms.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 5</span>
+        <span class="badge badge-free">CC BY 4.0 (see terms)</span>
+        <span class="badge badge-login">Login for downloads</span>
+      </div>
+      <a class="card-link" href="https://allencoralatlas.org/" target="_blank" rel="noopener">allencoralatlas.org &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="5">
+    <div class="card-head"><div class="card-title">Marine Regions Maritime Boundaries and EEZs v12</div><div class="card-provider">Flanders Marine Institute (VLIZ)</div></div>
+    <div class="card-body">
+      <div class="card-use">Global product includes Seychellois EEZ. Registration/disclaimer form observed on access. Boundaries are not a legal determination. CC BY 4.0, cite DOI 10.14284/632.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 5</span>
+        <span class="badge badge-free">CC BY 4.0</span>
+        <span class="badge badge-login">Registration</span>
+      </div>
+      <a class="card-link" href="https://www.marineregions.org/" target="_blank" rel="noopener">marineregions.org &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="5">
+    <div class="card-head"><div class="card-title">NOAA Coral Reef Watch daily Degree Heating Weeks v3.1</div><div class="card-provider">NOAA Coral Reef Watch / NESDIS</div></div>
+    <div class="card-body">
+      <div class="card-use">Global accumulated thermal-stress indicator applies to Seychelles bleaching risk. Product page verified; no NetCDF download verified. Distinct derived stress product.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 5</span>
+        <span class="badge badge-free">Public NOAA</span>
+        <span class="badge badge-format">NetCDF</span>
+      </div>
+      <a class="card-link" href="https://coralreefwatch.noaa.gov/product/5km/index_5km_dhw.php" target="_blank" rel="noopener">coralreefwatch.noaa.gov &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="5">
+    <div class="card-head"><div class="card-title">IBTrACS v04r01 global tropical-cyclone best tracks</div><div class="card-provider">NOAA NCEI / WMO contributing agencies</div></div>
+    <div class="card-body">
+      <div class="card-use">Anonymous partial download verified. CSV header inspected. Filter to South Indian Ocean; not an independent regional product.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 5</span>
+        <span class="badge badge-free">Public NOAA, cite IBTrACS</span>
+        <span class="badge badge-format">CSV / NetCDF / Shapefile</span>
+      </div>
+      <a class="card-link" href="https://www.ncei.noaa.gov/products/international-best-track-archive" target="_blank" rel="noopener">ncei.noaa.gov &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="5">
+    <div class="card-head"><div class="card-title">OBIS integrated marine species occurrences</div><div class="card-provider">IOC-UNESCO Ocean Biodiversity Information System</div></div>
+    <div class="card-body">
+      <div class="card-use">Bounded API sample verified; returned over 240,000 records including Aldabra observations. Mixed licence across contributing datasets; filter before redistribution.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 5</span>
+        <span class="badge badge-login">Free API, mixed licences</span>
+        <span class="badge badge-format">JSON / TSV</span>
+      </div>
+      <a class="card-link" href="https://obis.org/" target="_blank" rel="noopener">obis.org &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="5">
+    <div class="card-head"><div class="card-title">GBIF integrated biodiversity occurrence records</div><div class="card-provider">GBIF / contributing publishers</div></div>
+    <div class="card-body">
+      <div class="card-use">Seychelles query returned over 530,000 records. Search API needs no login; bulk downloads require free GBIF account. Includes terrestrial records.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 5</span>
+        <span class="badge badge-login">Free API, mixed licences</span>
+        <span class="badge badge-format">Darwin Core / CSV</span>
+      </div>
+      <a class="card-link" href="https://www.gbif.org/" target="_blank" rel="noopener">gbif.org &#8599;</a>
+    </div>
+  </div>
+
+  <div class="card" data-cluster="5">
+    <div class="card-head"><div class="card-title">World Database on Protected Areas (WDPA)</div><div class="card-provider">UNEP-WCMC / IUCN / Protected Planet</div></div>
+    <div class="card-body">
+      <div class="card-use">Global protected-area context relevant to Seychelles marine planning. Account/terms-mediated bulk access not exercised. Does not confirm completeness of Seychelles designations.</div>
+      <div class="card-meta">
+        <span class="badge badge-cluster">Cluster 5</span>
+        <span class="badge badge-restricted">Protected Planet terms</span>
+        <span class="badge badge-login">Account required</span>
+      </div>
+      <a class="card-link" href="https://www.protectedplanet.net/" target="_blank" rel="noopener">protectedplanet.net &#8599;</a>
+    </div>
+  </div>
+
+</div>
+
+<footer class="footer">
+  &copy; 2026&ndash;27 SHORE Institute &middot; Victoria, Seychelles &middot; Funded by SeyCCAT / ETF
+</footer>
+
+<script>
+(function(){
+  const cards=document.querySelectorAll('.card');
+  const countEl=document.getElementById('count');
+  const empty=document.getElementById('empty');
+  const searchEl=document.getElementById('search');
+  const btns=document.querySelectorAll('.filter-btn');
+  let activeCluster='all';
+  let searchQuery='';
+
+  function update(){
+    let visible=0;
+    cards.forEach(c=>{
+      if(!c.classList.contains('card')) return;
+      const cluster=c.dataset.cluster;
+      const text=(c.textContent||'').toLowerCase();
+      const clusterMatch=(activeCluster==='all'||cluster===activeCluster);
+      const searchMatch=(!searchQuery||text.includes(searchQuery.toLowerCase()));
+      if(clusterMatch&&searchMatch){c.hidden=false;visible++;}
+      else{c.hidden=true;}
+    });
+    countEl.textContent=visible+' dataset'+(visible===1?'':'s');
+    empty.style.display=visible===0?'block':'none';
+  }
+
+  btns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      btns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCluster=btn.dataset.cluster;
+      update();
+    });
+  });
+
+  searchEl.addEventListener('input',e=>{
+    searchQuery=e.target.value.trim();
+    update();
+  });
+})();
+</script>
+</body>
+</html>

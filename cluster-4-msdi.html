@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Marine Spatial Data Infrastructure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--deep:#071525;--navy:#0a1e3a;--ocean:#1e82c0;--white:#fff;--c4:#1e6aaa;--text:#1a2a3a;--muted:#4a5a6a;--rule:#d4dde6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;font-weight:400;color:var(--text);background:var(--white);line-height:1.65}
+a{color:var(--ocean);text-decoration:none}
+a:hover{text-decoration:underline}
+.nav{background:var(--deep);padding:0.9rem 2rem;display:flex;align-items:center;gap:1.5rem}
+.nav-home{color:rgba(255,255,255,0.55);font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;letter-spacing:0.03em;text-transform:uppercase;display:flex;align-items:center;gap:0.4rem;transition:color 0.15s}
+.nav-home:hover{color:#fff;text-decoration:none}
+.nav-home svg{width:14px;height:14px;flex-shrink:0}
+.nav-title{color:#fff;font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:800;letter-spacing:0.01em}
+.hero{background:var(--c4);padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.hero::after{content:'04';position:absolute;right:1.5rem;bottom:-0.5rem;font-family:'Syne',sans-serif;font-weight:800;font-size:8rem;color:rgba(255,255,255,0.05);line-height:1;pointer-events:none}
+.cluster-tag{display:inline-block;background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.7);font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;padding:0.25rem 0.65rem;border-radius:3px;margin-bottom:1rem}
+.hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.6rem,4vw,2.4rem);color:#fff;line-height:1.15;max-width:640px}
+.hero-summary{margin-top:0.9rem;color:rgba(255,255,255,0.7);font-size:1rem;max-width:580px;line-height:1.6}
+.meta{margin-top:1.4rem;color:rgba(255,255,255,0.4);font-size:0.78rem;letter-spacing:0.03em}
+.content{max-width:720px;margin:0 auto;padding:3rem 2rem 4rem}
+.content h2{font-family:'Syne',sans-serif;font-weight:700;font-size:1.25rem;color:var(--navy);margin:2.5rem 0 0.8rem;padding-bottom:0.5rem;border-bottom:2px solid var(--c4)}
+.content h2:first-child{margin-top:0}
+.content p{margin-bottom:1.1rem;color:var(--text)}
+.practice{background:#f0f5fa;border-left:4px solid var(--c4);border-radius:0 6px 6px 0;padding:1.25rem 1.5rem;margin:2rem 0}
+.practice-label{font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--ocean);margin-bottom:0.5rem}
+.practice p{margin:0;color:var(--text)}
+.references{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--rule)}
+.references h2{font-size:0.85rem;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);margin-bottom:0.75rem;padding:0;border:none}
+.references ul{list-style:none;padding:0}
+.references ul li{margin-bottom:0.4rem}
+.references ul li a{color:var(--ocean);font-size:0.9rem}
+.footer{background:var(--deep);color:rgba(255,255,255,0.4);text-align:center;font-size:0.78rem;padding:1.4rem 2rem}
+@media(max-width:600px){.hero{padding:2rem 1.25rem 2rem}.content{padding:2rem 1.25rem 3rem}}
+</style>
+<script>if(history.scrollRestoration)history.scrollRestoration="manual";window.addEventListener("load",function(){window.scrollTo(0,0);});</script>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-home" href="./">
+    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8,1 2,7 8,13"/><line x1="2" y1="7" x2="13" y2="7"/></svg>
+    Home
+  </a>
+  <span class="nav-title">Hydrospatial Literacy Platform</span>
+</nav>
+
+<div class="hero">
+  <div class="cluster-tag">Cluster 4</div>
+  <h1>Marine Spatial Data Infrastructure</h1>
+  <p class="hero-summary">How to understand MSDI as an institutional system, record minimum metadata, agree interoperable exchange between agencies, and establish stewardship arrangements for Seychelles marine data.</p>
+  <p class="meta">Last reviewed November 2026</p>
+</div>
+
+<main class="content">
+
+  <h2>Treat infrastructure as an institutional system</h2>
+  <p>MSDI includes governance, standards, people, data and services. A portal can improve discovery while leaving authority, update responsibilities and funding unresolved. Start with the Seychelles institutions that collect, maintain, approve and use the evidence. Distinguish technical hosting from legal control and stewardship.</p>
+  <p>Data sovereignty requires explicit authority over access and use under applicable law and institutional arrangements. An overseas server or an imported dataset does not by itself establish the degree of national control. Examine contracts, licences, decision rights, access dependencies and exit options.</p>
+
+  <h2>Record minimum metadata</h2>
+  <p>Metadata should identify a dataset, custodian, version, spatial and temporal extent, reference systems, methods, quality, licence, sensitivity, access route and update schedule. Include a usable contact and distinguish a catalogue page from a download endpoint.</p>
+  <p>Use a persistent identifier when available. Record lineage from original observations through clipping, reprojection and classification. A metadata record for a controlled dataset can remain publicly discoverable without exposing the data itself. Do not publish sensitive vessel coordinates merely to demonstrate openness.</p>
+
+  <h2>Agree interoperable exchange</h2>
+  <p>Interoperability covers shared meanings as well as compatible file formats. Agree units, controlled vocabularies, date conventions, geometry types and identifiers before merging inter-agency layers. Validate geometry and CRS at exchange boundaries.</p>
+  <p>WMS provides rendered maps, while WFS provides access to vector features subject to service configuration and permissions. A working map image does not prove that downloadable features or redistribution rights exist. Keep licences attached to exported data and document API limits, authentication and maintenance responsibility.</p>
+
+  <h2>Establish a stewardship agreement</h2>
+  <p>For a Seychelles marine data partnership, name the custodian, access approver, technical maintainer and escalation contact. Set an update cycle, archival procedure, backup location and recurring budget. Define how partners correct errors and how the national institution retrieves its records if a project or hosting agreement ends.</p>
+  <p>Classify access deliberately: public, registered, controlled or withheld with justification. Use proportionate controls and document the authority for each restriction. Open access and national governance can reinforce one another when responsibilities and reuse conditions remain explicit.</p>
+
+  <div class="practice">
+    <div class="practice-label">Practice</div>
+    <p>Prepare a one-page agreement for sharing a Seychelles habitat layer between a survey team and a planning authority. Specify the authoritative version, permitted uses, acknowledgement, update route and treatment of sensitive fields.</p>
+  </div>
+
+  <div class="references">
+    <h2>References</h2>
+    <ul>
+      <li><a href="https://iho.int/en/msdiwg" target="_blank" rel="noopener">IHO Marine Spatial Data Infrastructure</a></li>
+      <li><a href="https://www.ogc.org/standards/" target="_blank" rel="noopener">OGC standards</a></li>
+    </ul>
+  </div>
+
+</main>
+
+<footer class="footer">
+  &copy; 2026&ndash;27 SHORE Institute &middot; Victoria, Seychelles &middot; Funded by SeyCCAT / ETF
+</footer>
+</body>
+</html>

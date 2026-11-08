@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Seabed and Water Column</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--deep:#071525;--navy:#0a1e3a;--ocean:#1e82c0;--white:#fff;--c2:#1a3a6e;--text:#1a2a3a;--muted:#4a5a6a;--rule:#d4dde6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;font-weight:400;color:var(--text);background:var(--white);line-height:1.65}
+a{color:var(--ocean);text-decoration:none}
+a:hover{text-decoration:underline}
+.nav{background:var(--deep);padding:0.9rem 2rem;display:flex;align-items:center;gap:1.5rem}
+.nav-home{color:rgba(255,255,255,0.55);font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;letter-spacing:0.03em;text-transform:uppercase;display:flex;align-items:center;gap:0.4rem;transition:color 0.15s}
+.nav-home:hover{color:#fff;text-decoration:none}
+.nav-home svg{width:14px;height:14px;flex-shrink:0}
+.nav-title{color:#fff;font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:800;letter-spacing:0.01em}
+.hero{background:var(--c2);padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.hero::after{content:'02';position:absolute;right:1.5rem;bottom:-0.5rem;font-family:'Syne',sans-serif;font-weight:800;font-size:8rem;color:rgba(255,255,255,0.05);line-height:1;pointer-events:none}
+.cluster-tag{display:inline-block;background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.7);font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;padding:0.25rem 0.65rem;border-radius:3px;margin-bottom:1rem}
+.hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.6rem,4vw,2.4rem);color:#fff;line-height:1.15;max-width:640px}
+.hero-summary{margin-top:0.9rem;color:rgba(255,255,255,0.7);font-size:1rem;max-width:580px;line-height:1.6}
+.meta{margin-top:1.4rem;color:rgba(255,255,255,0.4);font-size:0.78rem;letter-spacing:0.03em}
+.content{max-width:720px;margin:0 auto;padding:3rem 2rem 4rem}
+.content h2{font-family:'Syne',sans-serif;font-weight:700;font-size:1.25rem;color:var(--navy);margin:2.5rem 0 0.8rem;padding-bottom:0.5rem;border-bottom:2px solid var(--c2)}
+.content h2:first-child{margin-top:0}
+.content p{margin-bottom:1.1rem;color:var(--text)}
+.practice{background:#f0f5fa;border-left:4px solid var(--c2);border-radius:0 6px 6px 0;padding:1.25rem 1.5rem;margin:2rem 0}
+.practice-label{font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--ocean);margin-bottom:0.5rem}
+.practice p{margin:0;color:var(--text)}
+.references{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--rule)}
+.references h2{font-size:0.85rem;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);margin-bottom:0.75rem;padding:0;border:none}
+.references ul{list-style:none;padding:0}
+.references ul li{margin-bottom:0.4rem}
+.references ul li a{color:var(--ocean);font-size:0.9rem}
+.footer{background:var(--deep);color:rgba(255,255,255,0.4);text-align:center;font-size:0.78rem;padding:1.4rem 2rem}
+@media(max-width:600px){.hero{padding:2rem 1.25rem 2rem}.content{padding:2rem 1.25rem 3rem}}
+</style>
+<script>if(history.scrollRestoration)history.scrollRestoration="manual";window.addEventListener("load",function(){window.scrollTo(0,0);});</script>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-home" href="./">
+    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8,1 2,7 8,13"/><line x1="2" y1="7" x2="13" y2="7"/></svg>
+    Home
+  </a>
+  <span class="nav-title">Hydrospatial Literacy Platform</span>
+</nav>
+
+<div class="hero">
+  <div class="cluster-tag">Cluster 2</div>
+  <h1>The Seabed and Water Column</h1>
+  <p class="hero-summary">How to assess bathymetric products, understand acoustic measurement chains, work with water-column observations, and evaluate uncertainty and fitness for use in Seychelles and Western Indian Ocean contexts.</p>
+  <p class="meta">Last reviewed November 2026</p>
+</div>
+
+<main class="content">
+
+  <h2>Distinguish observations from surfaces</h2>
+  <p>Bathymetry represents underwater terrain, but a depth grid is not necessarily a recent survey. Global compilations combine soundings, existing grids and predicted terrain. Inspect source information and acquisition history before using a regional product around the Seychelles Bank. Cell spacing describes the output grid, not a guarantee of independent observations at that spacing.</p>
+  <p>Select survey methods for the intended use. A single-beam system samples beneath the vessel. A multibeam echosounder covers a swath and requires calibrated positioning, motion, timing and sound-speed information. Side-scan sonar maps acoustic reflectivity and does not alone provide a bathymetric surface.</p>
+
+  <h2>Correct the measurement chain</h2>
+  <p>Acoustic range depends on travel time and sound speed. A sound-speed profile describes how speed changes with depth and affects ray paths. Surface measurements and deeper profiles serve different parts of the correction chain. Update profiles when conditions change, not merely at a fixed convenient interval.</p>
+  <p>Record transducer offsets, vessel draft, positioning corrections, motion measurements and timing offsets. Apply a documented vertical reduction. Investigate cross-line differences and swath-edge behaviour. Retain rejected observations and processing decisions so another practitioner can audit the result.</p>
+
+  <h2>Match water-column observations</h2>
+  <p>A CTD measures conductivity, temperature and pressure. Processing derives salinity and depth using specified algorithms and assumptions. Keep original measurements, calibration information and quality flags. A satellite surface-temperature estimate, an Argo profile and a coastal instrument can describe different depths and times even when their map positions overlap.</p>
+  <p>For a Western Indian Ocean comparison, state the sampling window, depth range and QC rules before combining observations. Distinguish a climatological mean from an event observation. Ocean reanalyses provide coherent estimates constrained by models and observations; they do not remove the need to examine local performance.</p>
+
+  <h2>Assess uncertainty and fitness</h2>
+  <p>Propagate relevant positioning, motion, sound-speed and vertical-reference uncertainties. Report confidence conventions and compare achieved quality with the applicable survey specification. Do not invent a uniform uncertainty for a heterogeneous global grid.</p>
+  <p>For Seychelles reef work, ask whether the shallowest areas, steep slopes and narrow channels are resolved. For regional circulation, ask whether water-column sampling and model resolution capture the processes of interest. A product suitable for a national overview may fail a site-level impact assessment.</p>
+
+  <div class="practice">
+    <div class="practice-label">Practice</div>
+    <p>Prepare a survey specification for a hypothetical Seychelles Bank habitat study. Define the area, purpose, reference surfaces, environmental constraints, overlap, independent checks and deliverables. Then identify which parts a GEBCO extract can inform and which require new observations.</p>
+  </div>
+
+  <div class="references">
+    <h2>References</h2>
+    <ul>
+      <li><a href="https://www.gebco.net/" target="_blank" rel="noopener">GEBCO data products</a></li>
+      <li><a href="https://argo.ucsd.edu/data/" target="_blank" rel="noopener">Argo data guidance</a></li>
+    </ul>
+  </div>
+
+</main>
+
+<footer class="footer">
+  &copy; 2026&ndash;27 SHORE Institute &middot; Victoria, Seychelles &middot; Funded by SeyCCAT / ETF
+</footer>
+</body>
+</html>
